@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const OPENAI_API_KEY = "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";
-const HF_API_KEY = "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";
+const OPENAI_API_KEY = "";
+const HF_API_KEY = "";
 
 const initialMessages = [
   { role: "assistant", content: "Hi! How can I help you today?" }
