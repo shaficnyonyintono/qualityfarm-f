@@ -10,7 +10,7 @@ function Categories() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8000/categories/")
+    fetch("https://qualityfarm-b-1.onrender.com/categories/")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch categories");
         return res.json();
@@ -23,7 +23,7 @@ function Categories() {
   const handleCategoryClick = (cat) => {
     setSelectedCategory(cat);
     setItemsLoading(true);
-    fetch(`http://localhost:8000/items/?category=${cat.id}`)
+    fetch(`https://qualityfarm-b-1.onrender.com/items/?category=${cat.id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch items");
         return res.json();
