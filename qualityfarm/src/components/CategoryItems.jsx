@@ -9,7 +9,7 @@ function CategoryItems() {
 
   useEffect(() => {
     // Fetch category info
-    fetch(`http://localhost:8000/categories/`)
+    fetch(`https://qualityfarm-b-1.onrender.com/categories/`)
       .then(res => res.json())
       .then(data => {
         const cat = data.find(c => String(c.id) === String(id));
@@ -17,7 +17,7 @@ function CategoryItems() {
       });
 
     // Fetch items for this category
-    fetch(`http://localhost:8000/items/?category=${id}`)
+    fetch(`https://qualityfarm-b-1.onrender.com/items/?category=${id}`)
       .then(res => res.json())
       .then(setItems)
       .catch(console.error)
