@@ -47,7 +47,7 @@ function AllFeaturedProducts() {
   const [ratingSubmitting, setRatingSubmitting] = useState({});
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/featured/")
+    fetch("https://qualityfarm-b-1.onrender.com/featured/")
       .then((res) => res.json())
       .then(setProducts)
       .catch(console.error)
@@ -63,7 +63,7 @@ function AllFeaturedProducts() {
     setRatingSubmitting(prev => ({ ...prev, [productId]: true }));
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://127.0.0.1:8000/api/products/${productId}/rate/`, {
+      const res = await fetch(`https://qualityfarm-b-1.onrender.com/products/${productId}/rate/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ function AllFeaturedProducts() {
         {products.map((product) => (
           <div key={product.id} className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100">
             <img
-              src={product.image ? `http://127.0.0.1:8000${product.image}` : "/placeholder.jpg"}
+              src={product.image ? `https://qualityfarm-b-1.onrender.com${product.image}` : "/placeholder.jpg"}
               alt={product.title}
               className="h-36 w-36 object-cover rounded-full mb-4 border-4 border-green-500 shadow"
             />

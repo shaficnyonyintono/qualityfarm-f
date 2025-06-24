@@ -9,7 +9,7 @@ function CategoryItems() {
 
   useEffect(() => {
     // Fetch category info
-    fetch(`http://localhost:8000/api/categories/`)
+    fetch(`http://localhost:8000/categories/`)
       .then(res => res.json())
       .then(data => {
         const cat = data.find(c => String(c.id) === String(id));
@@ -17,7 +17,7 @@ function CategoryItems() {
       });
 
     // Fetch items for this category
-    fetch(`http://localhost:8000/api/items/?category=${id}`)
+    fetch(`http://localhost:8000/items/?category=${id}`)
       .then(res => res.json())
       .then(setItems)
       .catch(console.error)

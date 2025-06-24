@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-const backendUrl = "http://127.0.0.1:8000"; // adjust if needed
+const backendUrl = "https://qualityfarm-b-1.onrender.com"; // adjust if needed
 
 function shuffle(array) {
   // Fisher-Yates shuffle
@@ -22,7 +22,7 @@ const ImageSlider = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    fetch(`${backendUrl}/api/items/`)
+    fetch(`${backendUrl}/items/`)
       .then(res => res.json())
       .then(data => {
         // Collect all images from all products

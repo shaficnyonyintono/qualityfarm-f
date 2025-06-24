@@ -9,7 +9,7 @@ function ProductDetails() {
 
   useEffect(() => {
     fetch(
-      `http://127.0.0.1:8000/api/items/?search=${encodeURIComponent(name)}`
+      `https://qualityfarm-b-1.onrender.com/items/?search=${encodeURIComponent(name)}`
     )
       .then(res => res.json())
       .then(data => {

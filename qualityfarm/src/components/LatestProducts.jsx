@@ -7,7 +7,7 @@ const LatestProducts = () => {
   const [cartVersion, setCartVersion] = useState(0) // Add this
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/new/")
+    fetch("http://localhost:8000/new/")
       .then(res => res.json())
       .then(setLatestProducts)
       .catch(console.error)

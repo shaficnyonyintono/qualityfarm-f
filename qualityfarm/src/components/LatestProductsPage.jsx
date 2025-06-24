@@ -7,7 +7,7 @@ const LatestProductsPage = () => {
   const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/new/")
+    fetch("http://localhost:8000/new/")
       .then(res => res.json())
       .then(setLatestProducts)
       .catch(console.error)

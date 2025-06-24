@@ -18,7 +18,7 @@ function Login() {
     setError("");
     setMsg("");
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/auth/send-otp/", {
+      const res = await fetch("https://qualityfarm-b-1.onrender.com/auth/send-otp/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone }),
@@ -49,7 +49,7 @@ function Login() {
     setError("");
     setMsg("");
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/auth/verify-otp/", {
+      const res = await fetch("https://qualityfarm-b-1.onrender.com/auth/verify-otp/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone, otp }),

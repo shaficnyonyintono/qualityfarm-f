@@ -48,7 +48,7 @@ const FeaturedProducts = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/featured/")
+    fetch("https://qualityfarm-b-1.onrender.com/featured/")
       .then((res) => res.json())
       .then(setProducts)
       .catch(console.error)
@@ -64,7 +64,7 @@ const FeaturedProducts = () => {
     setRatingSubmitting(prev => ({ ...prev, [productId]: true }))
     try {
       const token = localStorage.getItem('token')
-      const res = await fetch(`http://127.0.0.1:8000/api/products/${productId}/rate/`, {
+      const res = await fetch(`https://qualityfarm-b-1.onrender.com/products/${productId}/rate/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const FeaturedProducts = () => {
                     src={
                       product.images[0].image.startsWith("http")
                         ? product.images[0].image
-                        : "http://127.0.0.1:8000" + product.images[0].image
+                        : "https://qualityfarm-b-1.onrender.com" + product.images[0].image
                     }
                     alt={product.title}
                     className="h-40 w-40 object-cover rounded-full mb-5 border-4 border-green-500 shadow"
@@ -190,7 +190,7 @@ const FeaturedProducts = () => {
 export default FeaturedProducts
 
 // After a successful login response from your backend:
-// fetch('http://127.0.0.1:8000/api/token/', {
+// fetch('https://qualityfarm-b-1.onrender.com/token/', {
 // //   method: 'POST',
 // //   headers: { 'Content-Type': 'application/json' },
 // //   body: JSON.stringify({ username, password })

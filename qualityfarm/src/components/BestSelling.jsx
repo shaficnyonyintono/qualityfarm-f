@@ -7,7 +7,7 @@ const BestSelling = () => {
   const [cartVersion, setCartVersion] = useState(0) // Add this
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/bestselling/')
+    fetch('http://localhost:8000/bestselling/')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch best selling products')
         return res.json()

@@ -6,7 +6,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const backendUrl = "http://127.0.0.1:8000";
+const backendUrl = "https://qualityfarm-b-1.onrender.com";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ const Products = () => {
 
   useEffect(() => {
     setLoading(true);
-    let url = "http://127.0.0.1:8000/api/items/";
+    let url = "https://qualityfarm-b-1.onrender.com/items/";
     if (searchTerm) {
       url += `?search=${encodeURIComponent(searchTerm)}`;
     }

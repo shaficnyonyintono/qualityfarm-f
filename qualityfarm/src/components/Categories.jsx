@@ -10,7 +10,7 @@ function Categories() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/categories/")
+    fetch("http://localhost:8000/categories/")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch categories");
         return res.json();
@@ -23,7 +23,7 @@ function Categories() {
   const handleCategoryClick = (cat) => {
     setSelectedCategory(cat);
     setItemsLoading(true);
-    fetch(`http://localhost:8000/api/items/?category=${cat.id}`)
+    fetch(`http://localhost:8000/items/?category=${cat.id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch items");
         return res.json();
@@ -60,7 +60,7 @@ function Categories() {
             style={{ flex: "0 0 auto" }}
           >
             <img
-              src={cat.image ? `http://127.0.0.1:8000${cat.image}` : "/placeholder.jpg"}
+              src={cat.image ? `https://qualityfarm-b-1.onrender.com${cat.image}` : "/placeholder.jpg"}
               alt={cat.name}
               className={`object-cover rounded mb-2 w-full ${isFew ? "h-40" : "h-32"}`}
             />
