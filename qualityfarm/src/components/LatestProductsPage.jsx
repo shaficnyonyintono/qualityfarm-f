@@ -7,7 +7,7 @@ const LatestProductsPage = () => {
   const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
-    fetch("https://qualityfarm-b-1.onrender.com:8000/new/")
+    fetch("https://qualityfarm-b-1.onrender.com/new/")
       .then(res => res.json())
       .then(setLatestProducts)
       .catch(console.error)
