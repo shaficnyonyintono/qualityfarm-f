@@ -183,10 +183,6 @@ const FeaturedProducts = () => {
           </div>
         ))}
       </div>
-      <div>
-        <div className="hidden sm:block bg-green-500 text-white p-2">Desktop Only</div>
-        <div className="sm:hidden bg-red-500 text-white p-2">Mobile Only</div>
-      </div>
     </div>
   )
 }
