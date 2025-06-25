@@ -126,13 +126,13 @@ const FeaturedProducts = () => {
         {products.map((product, idx) => (
           <div
             key={product.id || idx}
-            className="min-w-[300px] px-4 flex justify-center"
+            className="min-w-[220px] max-w-[220px] px-2 flex justify-center"
             style={{
               marginLeft: idx === 0 ? 0 : undefined,
               scrollSnapAlign: "start"
             }}
           >
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 flex flex-col items-center border border-gray-100">
+            <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-4 flex flex-col items-center border border-gray-100">
               <div className="relative">
                 {product.images && product.images.length > 0 ? (
                   <img
@@ -142,21 +142,21 @@ const FeaturedProducts = () => {
                         : "https://qualityfarm-b-1.onrender.com" + product.images[0].image
                     }
                     alt={product.title}
-                    className="h-40 w-40 object-cover rounded-full mb-5 border-4 border-green-500 shadow"
+                    className="h-28 w-28 object-cover rounded-full mb-3 border-4 border-green-500 shadow"
                   />
                 ) : (
                   <img
                     src="/placeholder.jpg"
                     alt="No product"
-                    className="h-40 w-40 object-cover rounded-full mb-5 border-4 border-green-500 shadow"
+                    className="h-28 w-28 object-cover rounded-full mb-3 border-4 border-green-500 shadow"
                   />
                 )}
                 <span className="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-0.5 rounded-full shadow">
                   UGX {product.price}
                 </span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.title}</h3>
-              <div className="flex items-center mb-2">
+              <h3 className="text-base font-semibold text-gray-800 mb-1 text-center">{product.title}</h3>
+              <div className="flex items-center mb-1">
                 {isLoggedIn()
                   ? renderStars(
                       product.average_rating || 0,
@@ -172,9 +172,9 @@ const FeaturedProducts = () => {
                   <span className="ml-2 text-xs text-gray-400">Login to rate</span>
                 )}
               </div>
-              <p className="text-gray-500 text-base text-center mb-5">{product.description}</p>
+              <p className="text-gray-500 text-xs text-center mb-2 line-clamp-2">{product.description}</p>
               <button
-                className="mt-auto bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-6 py-2 rounded-full font-semibold shadow transition-all duration-200 text-center w-full"
+                className="mt-auto bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-4 py-1.5 rounded-full font-semibold shadow transition-all duration-200 text-center w-full text-sm"
                 onClick={() => navigate(`/product/${encodeURIComponent(product.title)}`)}
               >
                 View Details
