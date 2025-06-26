@@ -76,8 +76,8 @@ function Cart() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <h2 className="text-2xl font-bold text-green-700 mb-6">Your Cart</h2>
-      <div className="bg-white rounded-xl shadow p-6">
-        <table className="w-full text-left">
+      <div className="bg-white rounded-xl shadow p-6 overflow-x-auto">
+        <table className="w-full text-left min-w-[600px] sm:min-w-0">
           <thead>
             <tr className="border-b">
               <th className="py-2">Product</th>
@@ -90,16 +90,16 @@ function Cart() {
           <tbody>
             {cart.map(item => (
               <tr key={item.id} className="border-b hover:bg-gray-50">
-                <td className="py-3 flex items-center gap-3">
+                <td className="py-3 flex items-center gap-3 min-w-[180px]">
                   <img
                     src={item.image ? item.image : "/placeholder.jpg"}
                     alt={item.title}
                     className="w-14 h-14 object-cover rounded border"
                   />
-                  <span className="font-semibold">{item.title}</span>
+                  <span className="font-semibold break-words">{item.title}</span>
                 </td>
-                <td className="py-3 text-green-700 font-bold">UGX {item.price}</td>
-                <td className="py-3">
+                <td className="py-3 text-green-700 font-bold min-w-[90px]">UGX {item.price}</td>
+                <td className="py-3 min-w-[100px]">
                   <div className="flex items-center gap-2">
                     <button
                       className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
@@ -118,10 +118,10 @@ function Cart() {
                     </button>
                   </div>
                 </td>
-                <td className="py-3 font-semibold">
+                <td className="py-3 font-semibold min-w-[110px]">
                   UGX {(Number(item.price) * item.quantity).toLocaleString()}
                 </td>
-                <td className="py-3">
+                <td className="py-3 min-w-[60px]">
                   <button
                     className="text-red-600 hover:text-red-800"
                     onClick={() => handleRemove(item.id)}
