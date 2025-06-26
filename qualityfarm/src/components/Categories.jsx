@@ -44,21 +44,23 @@ function Categories() {
         <h2 className="text-2xl font-bold text-green-700">Categories</h2>
       </div>
       <div
-        className={`pb-4 flex gap-4 ${isFew ? "justify-center" : "overflow-x-auto"} `}
+        className={`pb-4 flex gap-10 overflow-x-auto ${isFew ? "justify-center" : ""}`}
         style={{
           scrollbarWidth: "thin",
           WebkitOverflowScrolling: "touch",
-          overflowX: isFew ? undefined : "auto", // Ensure horizontal scroll when many
+          paddingLeft: isFew ? undefined : "1.5rem", // Increase left padding for scrollable
         }}
       >
-        {categories.map((cat) => (
+        {categories.map((cat, idx) => (
           <Link
             key={cat.id}
             to={`/category/${cat.id}`}
             className={`bg-white p-4 rounded shadow cursor-pointer hover:ring-2 ring-green-400 block transition-all duration-200
               ${isFew ? "min-w-[260px] max-w-xs scale-110" : "min-w-[200px]"}
             `}
-            style={{ flex: "0 0 auto" }}
+            style={{
+              flex: "0 0 auto",
+            }}
           >
             <img
               src={cat.image ? `https://qualityfarm-b-1.onrender.com${cat.image}` : "/placeholder.jpg"}
