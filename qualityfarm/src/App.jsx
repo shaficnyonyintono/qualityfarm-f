@@ -22,7 +22,9 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <div className="w-full">
+        <Navbar />
+      </div>
       <div
         id="main-content"
       >
