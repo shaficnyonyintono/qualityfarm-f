@@ -68,7 +68,7 @@ const Navbar = () => {
               alt="Logo"
               className="h-12 w-12 rounded-full object-cover border-2 border-green-600 shadow"
             />
-            <div className="hidden sm:block">
+            <div>
               <span className="text-2xl font-extrabold text-green-700 tracking-tight">QualityFarm</span>
               <div className="text-xs text-gray-500 font-medium mt-1 max-w-[180px] leading-tight break-words">
                 Get the freshest produce and best farm deals delivered to your door.
