@@ -26,6 +26,7 @@ function App() {
       </div>
       <div
         id="main-content"
+        className="mt-35"
       >
         <Body />
         <div>
