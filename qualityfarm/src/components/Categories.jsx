@@ -44,10 +44,11 @@ function Categories() {
         <h2 className="text-2xl font-bold text-green-700">Categories</h2>
       </div>
       <div
-        className={`pb-4 ${isFew ? "flex justify-center gap-8" : "flex gap-4 overflow-x-auto"}`}
+        className={`pb-4 flex gap-4 ${isFew ? "justify-center" : "overflow-x-auto"} `}
         style={{
           scrollbarWidth: "thin",
           WebkitOverflowScrolling: "touch",
+          overflowX: isFew ? undefined : "auto", // Ensure horizontal scroll when many
         }}
       >
         {categories.map((cat) => (
