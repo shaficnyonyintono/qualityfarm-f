@@ -98,6 +98,21 @@ const ProductCard = ({ product, isInCart = false, onAddToCart }) => {
           </div>
         )}
 
+        {/* Wishlist Button - positioned to avoid overlap with featured badge */}
+        <button
+          onClick={handleWishlist}
+          disabled={wishlistLoading}
+          className={`absolute z-20 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 disabled:cursor-not-allowed disabled:opacity-50 ${
+            product.is_featured ? 'top-3 right-16' : 'top-3 right-3'
+          }`}
+        >
+          {wishlistLoading ? (
+            <i className="fas fa-spinner fa-spin text-gray-400"></i>
+          ) : (
+            <i className={`fas fa-heart ${isWishlisted ? 'text-red-500' : 'text-gray-400'} transition-colors`}></i>
+          )}
+        </button>
+
         {/* New/Featured Badge */}
         {product.is_featured && (
           <div className="absolute top-3 right-3 z-10">
@@ -106,19 +121,6 @@ const ProductCard = ({ product, isInCart = false, onAddToCart }) => {
             </span>
           </div>
         )}
-
-        {/* Wishlist Button */}
-        <button
-          onClick={handleWishlist}
-          disabled={wishlistLoading}
-          className="absolute top-3 right-3 z-20 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {wishlistLoading ? (
-            <i className="fas fa-spinner fa-spin text-gray-400"></i>
-          ) : (
-            <i className={`fas fa-heart ${isWishlisted ? 'text-red-500' : 'text-gray-400'} transition-colors`}></i>
-          )}
-        </button>
 
         {/* Product Image */}
         <Link to={`/product/${encodeURIComponent(product.title)}`} className="block h-full">
