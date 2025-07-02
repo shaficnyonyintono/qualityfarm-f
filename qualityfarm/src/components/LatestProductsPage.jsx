@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Add this import
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import ProductCard from './ProductCard';
 
 const LatestProductsPage = () => {
   const [latestProducts, setLatestProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://qualityfarm-b-1.onrender.com/new/")
@@ -14,47 +16,79 @@ const LatestProductsPage = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div>Loading latest products...</div>;
+  // Add to Cart functionality
+  const handleAddToCart = (product) => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const existing = cart.find((item) => item.id === product.id);
+    if (existing) {
+      existing.cartQuantity = (existing.cartQuantity || 1) + 1;
+    } else {
+      cart.push({
+        ...product,
+        cartQuantity: 1,
+        image: product.images && product.images.length > 0 ? product.images[0].image : null
+      });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated"));
+    toast.success(`${product.title} added to cart!`);
+  };
+
+  // Helper to check if product is in cart
+  const isInCart = (productId) => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    return cart.some((item) => item.id === productId);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading latest products...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12">
-      <div className="mb-6">
-        <button
-          className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-full font-semibold shadow transition-all duration-200"
-          onClick={() => navigate("/")}
-        >
-          Back to Home
-        </button>
-      </div>
-      <h2 className="text-3xl font-extrabold text-green-700 tracking-tight mb-8">All Latest Products</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {latestProducts.map((product, idx) => (
-          <div
-            key={product.id || idx}
-            className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col items-center border border-gray-100 group"
+    <div className="min-h-screen pt-24 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-8">
+          <button
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-semibold transition-colors duration-200 mb-4"
+            onClick={() => navigate("/")}
           >
-            <div className="w-28 h-28 mb-4 rounded-full overflow-hidden border-4 border-green-500 shadow-lg group-hover:scale-105 transition-transform duration-300">
-              {product.images && product.images.length > 0 ? (
-                <img
-                  src={product.images[0].image}
-                  alt={product.title}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <img
-                  src="/placeholder.jpg"
-                  alt="No product"
-                  className="w-full h-full object-cover"
-                />
-              )}
+            ← Back to Home
+          </button>
+          <h1 className="text-3xl font-bold text-green-700 mb-4">Latest Products</h1>
+          <p className="text-gray-600">Discover our newest arrivals and latest additions</p>
+        </div>
+        
+        {latestProducts.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <i className="fas fa-clock text-6xl text-gray-300 mb-4"></i>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">No new products available</h2>
+              <p className="text-gray-600">Check back later for our latest products.</p>
             </div>
-            <h3 className="text-lg font-bold text-gray-800 mb-1 text-center">{product.title}</h3>
-            <p className="text-green-700 font-bold text-base mb-1">UGX {product.price}</p>
-            <p className="text-gray-500 text-sm text-center mb-4">{product.description}</p>
           </div>
-        ))}
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {latestProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                isInCart={isInCart(product.id)}
+                onAddToCart={handleAddToCart}
+              />
+            ))}
+          </div>
+        )}
       </div>
-    </section>
+    </div>
   );
 };
 
