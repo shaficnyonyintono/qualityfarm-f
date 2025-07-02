@@ -108,7 +108,7 @@ const Navbar = () => {
           {/* Desktop Nav */}
           <div className="hidden sm:flex flex-1 items-center justify-between ml-10">
             {/* Searchbar */}
-            <form className="flex items-center max-w-lg mx-auto flex-1" onSubmit={handleSearch}>
+            <div className="flex items-center max-w-lg mx-auto flex-1">
               <div className="relative flex-1">
                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg z-10">
                   <i className="fas fa-search"></i>
@@ -119,15 +119,17 @@ const Navbar = () => {
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                   className="w-full pl-12 pr-4 py-3 rounded-l-full border-2 border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200 shadow-md bg-white"
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
                 />
               </div>
               <button
-                type="submit"
-                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-6 py-3 rounded-r-full font-semibold shadow-md transition-all duration-200 hover:shadow-lg whitespace-nowrap"
+                type="button"
+                onClick={handleSearch}
+                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-4 py-3 rounded-r-full font-semibold shadow-md transition-all duration-200 hover:shadow-lg flex-shrink-0"
               >
-                Search
+                <i className="fas fa-search"></i>
               </button>
-            </form>
+            </div>
             {/* Cart & Profile */}
             <div className="flex items-center gap-6 ml-8">
               {/* Wishlist */}
@@ -205,7 +207,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="sm:hidden mt-4">
-            <form className="flex items-center mb-4" onSubmit={handleSearch}>
+            <div className="flex items-center mb-4">
               <div className="relative flex-1">
                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg z-10">
                   <i className="fas fa-search"></i>
@@ -216,15 +218,17 @@ const Navbar = () => {
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                   className="w-full pl-12 pr-4 py-3 rounded-l-full border-2 border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200 shadow-md bg-white"
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
                 />
               </div>
               <button
-                type="submit"
-                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-6 py-3 rounded-r-full font-semibold shadow-md transition-all duration-200 hover:shadow-lg whitespace-nowrap"
+                type="button"
+                onClick={handleSearch}
+                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-4 py-3 rounded-r-full font-semibold shadow-md transition-all duration-200 hover:shadow-lg flex-shrink-0"
               >
-                Search
+                <i className="fas fa-search"></i>
               </button>
-            </form>
+            </div>
             <div className="flex flex-col gap-4">
               <Link to="/wishlist" className="relative flex items-center group" onClick={() => setMenuOpen(false)}>
                 <span className="text-2xl text-red-500 group-hover:text-red-700 transition-colors">
