@@ -1,8 +1,8 @@
 import './App.css'
-import Navbar from './components/Navbar'
-import Body from './components/Body'
-import FeaturedProducts from './components/FeaturedProducts'
-import Categories from './components/Categories'
+import Navbar from './components/NavbarNew'
+import HeroSection from './components/HeroSection'
+import FeaturedProducts from './components/FeaturedProductsProfessional'
+import CategoriesSlider from './components/CategoriesSlider'
 import LatestProducts from './components/LatestProducts'
 import BestSelling from './components/BestSelling'
 import Footer from './components/Footer'
@@ -26,14 +26,14 @@ function App() {
       </div>
       <div
         id="main-content"
-        className="mt-35"
+        className="pt-28"
       >
-        <Body />
+        <HeroSection />
         <div>
           <FeaturedProducts />
         </div>
         <div>
-          <Categories />
+          <CategoriesSlider />
         </div>
         <div>
           <LatestProducts />

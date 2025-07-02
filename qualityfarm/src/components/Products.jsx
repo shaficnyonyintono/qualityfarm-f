@@ -1,6 +1,7 @@
 // filepath: c:\Users\user\Desktop\qualityfarm\frontend\qualityfarm\src\Products.jsx
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // <-- import useNavigate
+import { toast } from "react-toastify";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -45,7 +46,7 @@ const Products = () => {
     }
     localStorage.setItem("cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cartUpdated")); // update cart badge
-    alert(`${product.title} added to cart!`);
+    toast.success(`${product.title} added to cart!`);
   };
 
   // Helper to check if product is in cart
@@ -54,10 +55,10 @@ const Products = () => {
     return cart.some((item) => item.id === productId);
   };
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading) return <div className="text-center py-10 mt-24">Loading...</div>;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 py-10 mt-24">
       <h2 className="text-2xl font-bold mb-6">
         {searchTerm ? `Results for "${searchTerm}"` : "All Products"}
       </h2>

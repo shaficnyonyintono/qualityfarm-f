@@ -87,7 +87,7 @@ const Navbar = () => {
           <div className="hidden sm:flex flex-1 items-center justify-between ml-10">
             {/* Searchbar */}
             <form className="relative flex items-center max-w-lg mx-auto flex-1" onSubmit={handleSearch}>
-              <span className="absolute left-4 text-gray-400 text-lg">
+              <span className="absolute left-4 text-gray-500 text-lg z-10">
                 <i className="fas fa-search"></i>
               </span>
               <input
@@ -95,11 +95,11 @@ const Navbar = () => {
                 placeholder="Search for products..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full pl-12 pr-4 py-2 rounded-l-full border border-gray-200 focus:ring-2 focus:ring-green-400 focus:outline-none transition-all duration-200 shadow-sm"
+                className="w-full pl-12 pr-4 py-3 rounded-l-full border-2 border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200 shadow-md bg-white"
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-6 py-2 rounded-r-full font-semibold shadow-sm transition-all duration-200"
+                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-8 py-3 rounded-r-full font-semibold shadow-md transition-all duration-200 hover:shadow-lg"
               >
                 Search
               </button>
@@ -170,7 +170,7 @@ const Navbar = () => {
         {menuOpen && (
           <div className="sm:hidden mt-4">
             <form className="relative flex items-center mb-4" onSubmit={handleSearch}>
-              <span className="absolute left-4 text-gray-400 text-lg">
+              <span className="absolute left-4 text-gray-500 text-lg z-10">
                 <i className="fas fa-search"></i>
               </span>
               <input
@@ -178,11 +178,11 @@ const Navbar = () => {
                 placeholder="Search for products..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full pl-12 pr-4 py-2 rounded-l-full border border-gray-200 focus:ring-2 focus:ring-green-400 focus:outline-none transition-all duration-200 shadow-sm"
+                className="w-full pl-12 pr-4 py-3 rounded-l-full border-2 border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200 shadow-md bg-white"
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-6 py-2 rounded-r-full font-semibold shadow-sm transition-all duration-200"
+                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-8 py-3 rounded-r-full font-semibold shadow-md transition-all duration-200 hover:shadow-lg"
               >
                 Search
               </button>

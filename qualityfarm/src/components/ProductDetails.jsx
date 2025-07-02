@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { toast } from "react-toastify"
 
 function ProductDetails() {
   const { name } = useParams()
@@ -37,7 +38,7 @@ function ProductDetails() {
       localStorage.setItem('cart', JSON.stringify(cart));
       window.dispatchEvent(new Event('cartUpdated'));
       setInCart(true);
-      alert("Added to cart!");
+      toast.success("Added to cart!");
     }
   };
 

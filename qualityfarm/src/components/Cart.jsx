@@ -57,7 +57,7 @@ function Cart() {
 
   if (cart.length === 0)
     return (
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <div className="max-w-3xl mx-auto px-4 py-12 mt-24">
         <h2 className="text-2xl font-bold text-green-700 mb-6">Your Cart</h2>
         <div className="bg-white rounded-xl shadow p-8 text-center text-gray-500">
           Your cart is empty.
@@ -74,7 +74,7 @@ function Cart() {
     );
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
+    <div className="max-w-3xl mx-auto px-4 py-12 mt-24">
       <h2 className="text-2xl font-bold text-green-700 mb-6">Your Cart</h2>
       <div className="bg-white rounded-xl shadow p-6 overflow-x-auto">
         <table className="w-full text-left min-w-[600px] sm:min-w-0">
