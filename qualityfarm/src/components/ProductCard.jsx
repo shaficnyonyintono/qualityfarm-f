@@ -1,70 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { addToWishlist, removeFromWishlist, checkWishlistStatus } from '../api.js';
 
 const ProductCard = ({ product, isInCart = false, onAddToCart }) => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
-  const [wishlistLoading, setWishlistLoading] = useState(false);
   const navigate = useNavigate();
-
-  const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    // Check if the product is already in wishlist when component mounts
-    const checkWishlist = async () => {
-      if (token && product.id) {
-        try {
-          const status = await checkWishlistStatus(product.id);
-          setIsWishlisted(status.is_wishlisted);
-        } catch (error) {
-          console.error('Error checking wishlist status:', error);
-        }
-      }
-    };
-    
-    checkWishlist();
-  }, [token, product.id]);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (onAddToCart) {
       onAddToCart(product);
-    }
-  };
-
-  const handleWishlist = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (!token) {
-      toast.error('Please login to add items to wishlist');
-      navigate('/login');
-      return;
-    }
-
-    setWishlistLoading(true);
-    
-    try {
-      if (isWishlisted) {
-        await removeFromWishlist(product.id);
-        setIsWishlisted(false);
-        toast.success('Removed from wishlist');
-      } else {
-        await addToWishlist(product.id);
-        setIsWishlisted(true);
-        toast.success('Added to wishlist');
-      }
-      
-      // Dispatch custom event to update wishlist count in navbar
-      window.dispatchEvent(new Event('wishlistUpdated'));
-    } catch (error) {
-      console.error('Error updating wishlist:', error);
-      toast.error('Failed to update wishlist');
-    } finally {
-      setWishlistLoading(false);
     }
   };
 
@@ -97,21 +43,6 @@ const ProductCard = ({ product, isInCart = false, onAddToCart }) => {
             </span>
           </div>
         )}
-
-        {/* Wishlist Button - positioned to avoid overlap with featured badge */}
-        <button
-          onClick={handleWishlist}
-          disabled={wishlistLoading}
-          className={`absolute z-20 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 disabled:cursor-not-allowed disabled:opacity-50 ${
-            product.is_featured ? 'top-3 right-16' : 'top-3 right-3'
-          }`}
-        >
-          {wishlistLoading ? (
-            <i className="fas fa-spinner fa-spin text-gray-400"></i>
-          ) : (
-            <i className={`fas fa-heart ${isWishlisted ? 'text-red-500' : 'text-gray-400'} transition-colors`}></i>
-          )}
-        </button>
 
         {/* New/Featured Badge */}
         {product.is_featured && (

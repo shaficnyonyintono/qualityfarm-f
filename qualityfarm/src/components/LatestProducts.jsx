@@ -121,11 +121,6 @@ const LatestProducts = () => {
                         </div>
                       )}
                     </div>
-                    
-                    {/* Wishlist Button */}
-                    <button className="absolute top-3 right-3 w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center group/wishlist">
-                      <i className="fas fa-heart text-gray-400 group-hover/wishlist:text-red-500 transition-colors duration-200"></i>
-                    </button>
                   </div>
 
                   {/* Product Info */}

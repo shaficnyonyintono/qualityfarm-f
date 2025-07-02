@@ -1,12 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { fetchWishlist } from '../api.js';
 
 const Navbar = () => {
   const [profileOpen, setProfileOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
-  const [wishlistCount, setWishlistCount] = useState(0)
   const [search, setSearch] = useState("");
   const [menuOpen, setMenuOpen] = useState(false)
   const [isSticky, setIsSticky] = useState(false)
@@ -25,26 +23,6 @@ const Navbar = () => {
     window.addEventListener('cartUpdated', updateCartCount)
     return () => window.removeEventListener('cartUpdated', updateCartCount)
   }, [])
-
-  useEffect(() => {
-    const updateWishlistCount = async () => {
-      if (token) {
-        try {
-          const wishlistData = await fetchWishlist();
-          setWishlistCount(wishlistData.length);
-        } catch (error) {
-          console.error('Error fetching wishlist count:', error);
-          setWishlistCount(0);
-        }
-      } else {
-        setWishlistCount(0);
-      }
-    }
-    
-    updateWishlistCount()
-    window.addEventListener('wishlistUpdated', updateWishlistCount)
-    return () => window.removeEventListener('wishlistUpdated', updateWishlistCount)
-  }, [token])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -225,18 +203,6 @@ const Navbar = () => {
               <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'} text-xl text-gray-700`}></i>
             </button>
 
-            {/* Wishlist */}
-            <Link to="/wishlist" className="hidden lg:flex relative group p-3 hover:bg-red-50 rounded-xl transition-all duration-200">
-              <div className="relative">
-                <i className="fas fa-heart text-2xl text-gray-600 group-hover:text-red-500 transition-colors duration-200"></i>
-                {wishlistCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                    {wishlistCount > 99 ? '99+' : wishlistCount}
-                  </span>
-                )}
-              </div>
-            </Link>
-
             {/* Premium Cart */}
             <Link to="/cart" className="relative group p-3 hover:bg-green-50 rounded-xl transition-all duration-300">
               <div className="relative">
@@ -302,14 +268,6 @@ const Navbar = () => {
                       >
                         <i className="fas fa-box"></i>
                         My Orders
-                      </Link>
-                      <Link
-                        to="/wishlist"
-                        className="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
-                        onClick={() => setProfileOpen(false)}
-                      >
-                        <i className="fas fa-heart"></i>
-                        Wishlist
                       </Link>
                       {(username === 'admin' || username === 'administrator') && (
                         <div className="border-t border-gray-100 mt-2 pt-2">
@@ -419,21 +377,6 @@ const Navbar = () => {
               >
                 <i className="fas fa-star w-5"></i>
                 Featured
-              </Link>
-              <Link
-                to="/wishlist"
-                className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-colors"
-                onClick={() => setMenuOpen(false)}
-              >
-                <div className="relative">
-                  <i className="fas fa-heart w-5 text-red-500"></i>
-                  {wishlistCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                      {wishlistCount > 9 ? '9+' : wishlistCount}
-                    </span>
-                  )}
-                </div>
-                Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
               </Link>
             </div>
           </div>

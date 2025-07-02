@@ -291,11 +291,6 @@ const FeaturedProducts = () => {
                     {product.category}
                   </span>
                 </div>
-
-                {/* Wishlist Button */}
-                <button className="absolute bottom-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-red-50 hover:text-red-500 transition-all duration-200 opacity-0 group-hover:opacity-100">
-                  <i className="fas fa-heart"></i>
-                </button>
               </div>
 
               {/* Product Details */}

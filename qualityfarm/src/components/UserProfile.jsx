@@ -7,7 +7,6 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
   const [orderHistory, setOrderHistory] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
     loadUserData();
@@ -33,12 +32,6 @@ const UserProfile = () => {
           { id: 1, orderNumber: 'QF-2025-001', date: '2025-07-01', total: 95000, status: 'delivered' },
           { id: 2, orderNumber: 'QF-2025-002', date: '2025-06-28', total: 67000, status: 'delivered' },
           { id: 3, orderNumber: 'QF-2025-003', date: '2025-06-25', total: 123000, status: 'delivered' }
-        ]);
-
-        setWishlist([
-          { id: 1, name: 'Premium Maize Seeds', price: 45000, image: '/api/placeholder/80/80' },
-          { id: 2, name: 'Advanced Sprinkler System', price: 125000, image: '/api/placeholder/80/80' },
-          { id: 3, name: 'Organic Pesticide', price: 35000, image: '/api/placeholder/80/80' }
         ]);
 
         setLoading(false);
@@ -159,17 +152,6 @@ const UserProfile = () => {
             >
               <i className="fas fa-shopping-bag mr-2"></i>
               Order History
-            </button>
-            <button
-              onClick={() => setActiveTab('wishlist')}
-              className={`px-8 py-4 font-semibold transition-all duration-200 ${
-                activeTab === 'wishlist'
-                  ? 'text-red-600 border-b-2 border-red-500 bg-red-50'
-                  : 'text-gray-600 hover:text-red-600 hover:bg-gray-50'
-              }`}
-            >
-              <i className="fas fa-heart mr-2"></i>
-              Wishlist
             </button>
             <button
               onClick={() => setActiveTab('settings')}
@@ -298,38 +280,6 @@ const UserProfile = () => {
                         <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
                           View Details
                         </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'wishlist' && (
-            <div>
-              <h2 className="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
-                <i className="fas fa-heart text-red-600"></i>
-                My Wishlist
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {wishlist.map(item => (
-                  <div key={item.id} className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-200">
-                    <div className="flex items-center gap-4">
-                      <div className="w-20 h-20 bg-gray-200 rounded-xl overflow-hidden">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-gray-900">{item.name}</h3>
-                        <p className="text-green-600 font-bold">{formatCurrency(item.price)}</p>
-                        <div className="flex gap-2 mt-2">
-                          <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm font-semibold transition-colors duration-200">
-                            Add to Cart
-                          </button>
-                          <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm font-semibold transition-colors duration-200">
-                            Remove
-                          </button>
-                        </div>
                       </div>
                     </div>
                   </div>

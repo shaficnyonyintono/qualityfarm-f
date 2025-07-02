@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import { fetchWishlist } from '../api.js';
 
 const Navbar = () => {
   const [profileOpen, setProfileOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
-  const [wishlistCount, setWishlistCount] = useState(0)
   const [search, setSearch] = useState("");
   const [menuOpen, setMenuOpen] = useState(false)
   const profileRef = useRef(null)
@@ -23,26 +21,6 @@ const Navbar = () => {
     window.addEventListener('cartUpdated', updateCartCount)
     return () => window.removeEventListener('cartUpdated', updateCartCount)
   }, [])
-
-  useEffect(() => {
-    const updateWishlistCount = async () => {
-      if (token) {
-        try {
-          const wishlistData = await fetchWishlist();
-          setWishlistCount(wishlistData.length);
-        } catch (error) {
-          console.error('Error fetching wishlist count:', error);
-          setWishlistCount(0);
-        }
-      } else {
-        setWishlistCount(0);
-      }
-    }
-    
-    updateWishlistCount()
-    window.addEventListener('wishlistUpdated', updateWishlistCount)
-    return () => window.removeEventListener('wishlistUpdated', updateWishlistCount)
-  }, [token])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -132,18 +110,6 @@ const Navbar = () => {
             </div>
             {/* Cart & Profile */}
             <div className="flex items-center gap-6 ml-8">
-              {/* Wishlist */}
-              <Link to="/wishlist" className="relative flex items-center group">
-                <span className="text-2xl text-red-500 group-hover:text-red-700 transition-colors">
-                  <i className="fas fa-heart"></i>
-                </span>
-                <span className="ml-2 text-gray-700 font-medium hidden sm:inline">Wishlist</span>
-                {wishlistCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 shadow">
-                    {wishlistCount}
-                  </span>
-                )}
-              </Link>
               {/* Cart */}
               <Link to="/cart" className="relative flex items-center group">
                 <span className="text-2xl text-green-700 group-hover:text-green-900 transition-colors">
@@ -230,17 +196,6 @@ const Navbar = () => {
               </button>
             </div>
             <div className="flex flex-col gap-4">
-              <Link to="/wishlist" className="relative flex items-center group" onClick={() => setMenuOpen(false)}>
-                <span className="text-2xl text-red-500 group-hover:text-red-700 transition-colors">
-                  <i className="fas fa-heart"></i>
-                </span>
-                <span className="ml-2 text-gray-700 font-medium">Wishlist</span>
-                {wishlistCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 shadow">
-                    {wishlistCount}
-                  </span>
-                )}
-              </Link>
               <Link to="/cart" className="relative flex items-center group" onClick={() => setMenuOpen(false)}>
                 <span className="text-2xl text-green-700 group-hover:text-green-900 transition-colors">
                   <i className="fas fa-shopping-cart"></i>
