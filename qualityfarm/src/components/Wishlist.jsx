@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchWishlist, removeFromWishlist } from '../api.js';
 import { toast } from 'react-toastify';
 
@@ -79,12 +80,12 @@ const Wishlist = () => {
             <i className="fas fa-heart text-6xl text-gray-300 mb-4"></i>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Your Wishlist</h2>
             <p className="text-gray-600 mb-6">Please login to view and manage your wishlist</p>
-            <a 
-              href="/login" 
+            <Link 
+              to="/login" 
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
             >
               Login to Continue
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -143,12 +144,12 @@ const Wishlist = () => {
               <i className="fas fa-heart text-6xl text-gray-300 mb-4"></i>
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Your wishlist is empty</h2>
               <p className="text-gray-600 mb-6">Start adding your favorite items to your wishlist</p>
-              <a 
-                href="/products" 
+              <Link 
+                to="/products" 
                 className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
               >
                 Browse Products
-              </a>
+              </Link>
             </div>
           </div>
         ) : (
@@ -202,12 +203,12 @@ const Wishlist = () => {
                         <i className="fas fa-shopping-cart mr-2"></i>
                         Add to Cart
                       </button>
-                      <a
-                        href={`/products/${item.id}`}
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg font-semibold transition-colors text-center"
+                      <Link
+                        to={`/product/${encodeURIComponent(item.title)}`}
+                        className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg font-semibold transition-colors text-center block"
                       >
                         <i className="fas fa-eye"></i>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
