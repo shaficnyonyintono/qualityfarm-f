@@ -1,4 +1,6 @@
-const API_BASE = "http://localhost:8000";
+const API_BASE = window.location.hostname === 'localhost' 
+  ? "http://localhost:8000" 
+  : "https://qualityfarm-b-1.onrender.com";
 
 export async function fetchProducts() {
   const res = await fetch(`${API_BASE}/items/`);
@@ -23,7 +25,18 @@ export async function fetchWishlist() {
       'Content-Type': 'application/json',
     },
   });
-  if (!res.ok) throw new Error("Failed to fetch wishlist");
+  
+  if (res.status === 401) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    throw new Error("Authentication failed. Please login again.");
+  }
+  
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.error || `Failed to fetch wishlist: ${res.status}`);
+  }
+  
   return res.json();
 }
 

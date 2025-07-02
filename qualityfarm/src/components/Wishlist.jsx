@@ -23,8 +23,16 @@ const Wishlist = () => {
       setError(null);
     } catch (err) {
       console.error('Error loading wishlist:', err);
-      setError('Failed to load wishlist');
-      toast.error('Failed to load wishlist');
+      if (err.message.includes('Authentication failed')) {
+        setError('Your session has expired. Please login again.');
+        // Redirect to login after a delay
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 2000);
+      } else {
+        setError(`Failed to load wishlist: ${err.message}`);
+      }
+      toast.error(err.message);
     } finally {
       setLoading(false);
     }
