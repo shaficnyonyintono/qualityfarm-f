@@ -114,18 +114,18 @@ const Navbar = () => {
         {/* Premium main navbar */}
         <nav className="flex items-center justify-between py-5 min-w-0">
           {/* Enhanced Logo */}
-          <Link to="/" className="flex items-center gap-4 group">
+          <Link to="/" className="flex items-center gap-4 group flex-1 min-w-0">
             <div className="relative">
-              <div className="h-14 w-14 bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-green-500/25 transition-all duration-500 group-hover:scale-105">
-                <i className="fas fa-seedling text-white text-2xl"></i>
+              <div className="h-12 w-12 sm:h-14 sm:w-14 bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-green-500/25 transition-all duration-500 group-hover:scale-105">
+                <i className="fas fa-seedling text-white text-lg sm:text-2xl"></i>
               </div>
-              <div className="absolute -top-1 -right-1 h-4 w-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
+              <div className="absolute -top-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
             </div>
-            <div className="hidden sm:block">
-              <h1 className="text-3xl font-black bg-gradient-to-r from-green-600 via-green-700 to-green-800 bg-clip-text text-transparent tracking-tight">
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-3xl font-black bg-gradient-to-r from-green-600 via-green-700 to-green-800 bg-clip-text text-transparent tracking-tight truncate">
                 QualityFarm
               </h1>
-              <p className="text-sm text-gray-600 font-semibold tracking-wide">Premium Agricultural Excellence</p>
+              <p className="text-xs sm:text-sm text-gray-600 font-semibold tracking-wide hidden xs:block">Premium Agricultural Excellence</p>
             </div>
           </Link>
 
@@ -193,6 +193,22 @@ const Navbar = () => {
 
           {/* Premium Right section */}
           <div className="flex items-center gap-3 flex-shrink-0">
+            {/* Premium Cart */}
+            <Link to="/cart" className="relative group p-3 hover:bg-green-50 rounded-xl transition-all duration-300">
+              <div className="relative">
+                <i className="fas fa-shopping-bag text-xl sm:text-2xl text-gray-600 group-hover:text-green-600 transition-colors duration-200"></i>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full h-5 w-5 sm:h-6 sm:w-6 flex items-center justify-center animate-bounce shadow-lg">
+                    {cartCount > 99 ? '99+' : cartCount}
+                  </span>
+                )}
+                {cartCount > 0 && (
+                  <div className="absolute -bottom-1 -right-1 h-2 w-2 sm:h-3 sm:w-3 bg-green-500 rounded-full animate-pulse"></div>
+                )}
+              </div>
+              <span className="hidden lg:block text-xs text-gray-500 text-center mt-1 font-medium">Cart</span>
+            </Link>
+
             {/* Mobile menu button */}
             <button
               className="md:hidden p-3 rounded-xl hover:bg-gray-100 transition-all duration-200 border border-gray-200"
@@ -201,24 +217,8 @@ const Navbar = () => {
               <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'} text-xl text-gray-700`}></i>
             </button>
 
-            {/* Premium Cart */}
-            <Link to="/cart" className="relative group p-3 hover:bg-green-50 rounded-xl transition-all duration-300">
-              <div className="relative">
-                <i className="fas fa-shopping-bag text-2xl text-gray-600 group-hover:text-green-600 transition-colors duration-200"></i>
-                {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center animate-bounce shadow-lg">
-                    {cartCount > 99 ? '99+' : cartCount}
-                  </span>
-                )}
-                {cartCount > 0 && (
-                  <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full animate-pulse"></div>
-                )}
-              </div>
-              <span className="hidden md:block text-xs text-gray-500 text-center mt-1 font-medium">Cart</span>
-            </Link>
-
-            {/* Premium Profile */}
-            <div className="relative" ref={profileRef}>
+            {/* Premium Profile - Desktop Only */}
+            <div className="hidden md:block relative" ref={profileRef}>
               <button
                 className="flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 transition-all duration-300 border border-gray-200/50 hover:border-green-300/50 hover:shadow-lg"
                 onClick={() => setProfileOpen(!profileOpen)}
@@ -231,7 +231,7 @@ const Navbar = () => {
                     <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>
                   )}
                 </div>
-                <div className="hidden md:block text-left">
+                <div className="hidden lg:block text-left">
                   <div className="text-sm font-bold text-gray-800">
                     {token && username ? username : 'Welcome'}
                   </div>
@@ -239,7 +239,7 @@ const Navbar = () => {
                     {token ? 'Premium Member' : 'Join Today'}
                   </div>
                 </div>
-                <i className="fas fa-chevron-down text-xs text-gray-400 hidden md:block transition-transform duration-200 group-hover:rotate-180"></i>
+                <i className="fas fa-chevron-down text-xs text-gray-400 hidden lg:block transition-transform duration-200 group-hover:rotate-180"></i>
               </button>
 
               {/* Profile dropdown */}
@@ -327,7 +327,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="lg:hidden border-t border-gray-100 py-4 animate-fade-in">
+          <div className="md:hidden border-t border-gray-100 py-4 animate-fade-in">
             {/* Mobile search */}
             <form onSubmit={handleSearch} className="relative mb-4">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -341,6 +341,96 @@ const Navbar = () => {
                 className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200"
               />
             </form>
+
+            {/* Mobile Profile Section */}
+            <div className="mb-4 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-200">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="relative">
+                  <div className="h-10 w-10 bg-gradient-to-br from-green-500 via-green-600 to-green-700 rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <i className="fas fa-user"></i>
+                  </div>
+                  {token && (
+                    <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full border-2 border-white"></div>
+                  )}
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-gray-800">
+                    {token && username ? username : 'Welcome'}
+                  </div>
+                  <div className="text-xs text-gray-500 font-medium">
+                    {token ? 'Premium Member' : 'Join Today'}
+                  </div>
+                </div>
+              </div>
+              
+              {token ? (
+                <div className="space-y-2">
+                  <Link
+                    to="/profile"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-white hover:text-green-700 rounded-lg transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <i className="fas fa-user-circle w-4"></i>
+                    My Profile
+                  </Link>
+                  <Link
+                    to="/orders"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-white hover:text-green-700 rounded-lg transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <i className="fas fa-box w-4"></i>
+                    My Orders
+                  </Link>
+                  {(username === 'admin' || username === 'administrator') && (
+                    <Link
+                      to="/admin"
+                      className="flex items-center gap-3 px-3 py-2 text-blue-600 hover:bg-white rounded-lg transition-colors"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <i className="fas fa-cog w-4"></i>
+                      Admin Panel
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setMenuOpen(false);
+                    }}
+                    className="flex items-center gap-3 w-full px-3 py-2 text-red-600 hover:bg-white rounded-lg transition-colors"
+                  >
+                    <i className="fas fa-sign-out-alt w-4"></i>
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-white hover:text-green-700 rounded-lg transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <i className="fas fa-sign-in-alt w-4"></i>
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-white hover:text-green-700 rounded-lg transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <i className="fas fa-user-plus w-4"></i>
+                    Create Account
+                  </Link>
+                  <Link
+                    to="/admin"
+                    className="flex items-center gap-3 px-3 py-2 text-blue-600 hover:bg-white rounded-lg transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <i className="fas fa-shield-alt w-4"></i>
+                    Admin Access
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* Mobile navigation links */}
             <div className="space-y-2">
