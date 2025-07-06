@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import "react-toastify/dist/ReactToastify.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import App from './App'
 import Products from './components/Products'
 import ProductDetails from './components/ProductDetails'
@@ -38,6 +40,14 @@ const Layout = ({ children }) => (
     <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
   </>
 );
+
+AOS.init({
+  duration: 800,
+  easing: 'ease-in-out',
+  once: true,
+  mirror: false,
+  offset: 100,
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -169,22 +169,22 @@ const ProfessionalFeaturedProducts = () => {
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Professional Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-blue-100 px-6 py-3 rounded-full border border-green-200 mb-6">
             <i className="fas fa-star text-yellow-500"></i>
             <span className="font-semibold text-gray-700">Premium Selection</span>
           </div>
-          <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight" data-aos="fade-up" data-aos-delay="200">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">Products</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
             Discover our handpicked collection of premium agricultural products, 
             carefully selected for their exceptional quality and proven performance.
           </p>
           
           {/* Back button for featured page */}
           {location.pathname.startsWith("/featured") && (
-            <div className="mt-8">
+            <div className="mt-8" data-aos="fade-up" data-aos-delay="600">
               <button
                 onClick={() => navigate("/")}
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
@@ -231,6 +231,9 @@ const ProfessionalFeaturedProducts = () => {
                       <div
                         key={product.id || idx}
                         className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2"
+                        data-aos="fade-up"
+                        data-aos-delay={idx * 100}
+                        data-aos-duration="600"
                       >
                         {/* Product Image */}
                         <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 aspect-square">

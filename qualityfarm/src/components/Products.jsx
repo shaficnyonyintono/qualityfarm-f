@@ -70,7 +70,7 @@ const Products = () => {
   return (
     <div className="min-h-screen pt-24 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
+        <div className="mb-8" data-aos="fade-down">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             {searchTerm ? `Search Results for "${searchTerm}"` : "All Products"}
           </h1>
@@ -83,7 +83,7 @@ const Products = () => {
         </div>
 
         {products.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-12" data-aos="fade-up">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <i className="fas fa-search text-6xl text-gray-300 mb-4"></i>
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
@@ -107,20 +107,26 @@ const Products = () => {
           </div>
         ) : (
           <>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6" data-aos="fade-right">
               {searchTerm 
                 ? `Found ${products.length} ${products.length === 1 ? 'product' : 'products'} matching "${searchTerm}"`
                 : `Showing ${products.length} ${products.length === 1 ? 'product' : 'products'}`
               }
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.map((product) => (
-                <ProductCard
+              {products.map((product, index) => (
+                <div
                   key={product.id}
-                  product={product}
-                  isInCart={isInCart(product.id)}
-                  onAddToCart={handleAddToCart}
-                />
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                  data-aos-duration="600"
+                >
+                  <ProductCard
+                    product={product}
+                    isInCart={isInCart(product.id)}
+                    onAddToCart={handleAddToCart}
+                  />
+                </div>
               ))}
             </div>
           </>

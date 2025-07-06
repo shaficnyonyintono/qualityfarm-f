@@ -77,15 +77,15 @@ function Categories() {
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Professional Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-emerald-100 px-6 py-3 rounded-full border border-green-200 mb-6">
             <i className="fas fa-th-large text-green-600"></i>
             <span className="font-semibold text-gray-700">Browse Collection</span>
           </div>
-          <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight" data-aos="fade-up" data-aos-delay="200">
             Product <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Categories</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
             Explore our comprehensive range of agricultural products, organized by category for easy browsing and selection.
           </p>
         </div>
@@ -98,13 +98,16 @@ function Categories() {
               : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           }`}
         >
-          {categories.map((cat) => (
+          {categories.map((cat, index) => (
             <Link
               key={cat.id}
               to={`/category/${cat.id}`}
               className={`group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2 ${
                 isFew ? "max-w-sm w-full" : ""
               }`}
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+              data-aos-duration="600"
             >
               {/* Category Image */}
               <div className="relative overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 aspect-square">

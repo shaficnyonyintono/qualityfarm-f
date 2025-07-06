@@ -89,14 +89,14 @@ const HeroSection = () => {
               className="animate-fadeInUp"
             >
               {/* Subtitle */}
-              <div className="mb-4">
+              <div className="mb-4" data-aos="fade-right" data-aos-duration="1000">
                 <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/20">
                   {heroSlides[currentSlide].subtitle}
                 </span>
               </div>
 
               {/* Main Title */}
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 {heroSlides[currentSlide].title}
               </h1>
 
@@ -123,17 +123,23 @@ const HeroSection = () => {
               </div>
 
               {/* Stats */}
-              <div className="mt-12 grid grid-cols-3 gap-8 max-w-md">
+              <div className="mt-12 grid grid-cols-3 gap-8 max-w-md" data-aos="fade-up" data-aos-delay="800">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">500+</div>
+                  <div className="text-2xl font-bold text-white mb-1">
+                    500+
+                  </div>
                   <div className="text-sm text-white/80">Products</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">50+</div>
+                  <div className="text-2xl font-bold text-white mb-1">
+                    50+
+                  </div>
                   <div className="text-sm text-white/80">Local Farmers</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">1000+</div>
+                  <div className="text-2xl font-bold text-white mb-1">
+                    1000+
+                  </div>
                   <div className="text-sm text-white/80">Happy Customers</div>
                 </div>
               </div>
