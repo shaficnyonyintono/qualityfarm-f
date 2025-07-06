@@ -61,20 +61,20 @@ const LatestProducts = () => {
       <div className="relative z-10">
         {/* Enhanced Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-emerald-100 px-6 py-3 rounded-full border border-green-200 mb-6">
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-emerald-100 px-6 py-3 rounded-full border border-green-200 mb-6" data-aos="fade-down">
             <i className="fas fa-clock text-green-600 text-lg"></i>
             <span className="text-green-700 font-semibold tracking-wide">Latest Products</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-black mb-4">
+          <h2 className="text-4xl lg:text-5xl font-black mb-4" data-aos="fade-up" data-aos-delay="200">
             Fresh <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Arrivals</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
             Discover our newest premium agricultural products, carefully selected for quality and excellence
           </p>
           
-          <div className="flex items-center justify-center mt-8">
+          <div className="flex items-center justify-center mt-8" data-aos="fade-up" data-aos-delay="600">
             <Link
               to="/latest"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group"
@@ -86,7 +86,7 @@ const LatestProducts = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="relative">
+        <div className="relative" data-aos="fade-up" data-aos-delay="800">
           {/* Scroll Gradient Overlays */}
           <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
           <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
@@ -98,6 +98,9 @@ const LatestProducts = () => {
                 <div
                   key={product.id || idx}
                   className="relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 flex flex-col border border-gray-100 group min-w-[300px] max-w-[300px] hover:-translate-y-2"
+                  data-aos="fade-right"
+                  data-aos-delay={idx * 200}
+                  data-aos-duration="600"
                 >
                   {/* Product Badge */}
                   <div className="absolute top-4 right-4">
@@ -172,7 +175,7 @@ const LatestProducts = () => {
 
         {/* Call to Action */}
         {latestProducts.length === 0 && (
-          <div className="text-center py-16">
+          <div className="text-center py-16" data-aos="fade-up" data-aos-delay="400">
             <div className="w-24 h-24 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <i className="fas fa-seedling text-3xl text-green-600"></i>
             </div>

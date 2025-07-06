@@ -170,8 +170,8 @@ function Categories() {
 
         {/* Selected Category Items Section */}
         {selectedCategory && (
-          <div className="mt-16 bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
-            <div className="text-center mb-8">
+          <div className="mt-16 bg-white rounded-3xl shadow-xl border border-gray-100 p-8" data-aos="fade-up" data-aos-delay="300">
+            <div className="text-center mb-8" data-aos="fade-down">
               <h3 className="text-3xl font-black text-gray-900 mb-4">
                 Items in "{selectedCategory.name}"
               </h3>
@@ -186,14 +186,19 @@ function Categories() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {selectedItems.length === 0 ? (
-                  <div className="col-span-full text-center py-12">
+                  <div className="col-span-full text-center py-12" data-aos="fade-up">
                     <i className="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
                     <h4 className="text-xl font-bold text-gray-600 mb-2">No items found</h4>
                     <p className="text-gray-500">This category doesn't have any products yet.</p>
                   </div>
                 ) : (
-                  selectedItems.map((item) => (
-                    <div key={item.id} className="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-200">
+                  selectedItems.map((item, index) => (
+                    <div 
+                      key={item.id} 
+                      className="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-200"
+                      data-aos="fade-up"
+                      data-aos-delay={index * 100}
+                    >
                       <div className="flex items-start justify-between mb-4">
                         <h4 className="font-bold text-gray-900 text-lg">{item.title}</h4>
                         <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-sm font-semibold">
@@ -217,7 +222,7 @@ function Categories() {
         )}
 
         {/* Call-to-action */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16" data-aos="fade-up" data-aos-delay="600">
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl p-8 border border-green-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Can't find what you're looking for?
