@@ -149,20 +149,20 @@ const ProductCard = ({ product, isInCart = false, onAddToCart }) => {
 
         {/* Stock Status */}
         <div className="flex items-center gap-2 mb-3">
-          <div className={`w-2 h-2 rounded-full ${product.stock > 0 ? 'bg-green-400' : 'bg-red-400'}`}></div>
-          <span className={`text-xs font-medium ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
-            {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+          <div className={`w-2 h-2 rounded-full ${product.quantity > 0 ? 'bg-green-400' : 'bg-red-400'}`}></div>
+          <span className={`text-xs font-medium ${product.quantity > 0 ? 'text-green-600' : 'text-red-600'}`}>
+            {product.quantity > 0 ? `${product.quantity} in stock` : 'Out of stock'}
           </span>
         </div>
 
         {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          disabled={isInCart || product.stock === 0}
+          disabled={isInCart || product.quantity === 0}
           className={`w-full py-2.5 px-4 rounded-xl font-medium transition-all duration-200 ${
             isInCart
               ? 'bg-green-100 text-green-700 cursor-not-allowed'
-              : product.stock === 0
+              : product.quantity === 0
               ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
               : 'bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 hover:shadow-lg transform hover:-translate-y-0.5'
           }`}
@@ -172,7 +172,7 @@ const ProductCard = ({ product, isInCart = false, onAddToCart }) => {
               <i className="fas fa-check"></i>
               In Cart
             </span>
-          ) : product.stock === 0 ? (
+          ) : product.quantity === 0 ? (
             'Out of Stock'
           ) : (
             <span className="flex items-center justify-center gap-2">
