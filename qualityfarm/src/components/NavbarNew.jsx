@@ -112,7 +112,7 @@ const Navbar = () => {
         </div>
 
         {/* Premium main navbar */}
-        <nav className="flex items-center justify-between py-5">
+        <nav className="flex items-center justify-between py-5 min-w-0">
           {/* Enhanced Logo */}
           <Link to="/" className="flex items-center gap-4 group">
             <div className="relative">
@@ -130,7 +130,7 @@ const Navbar = () => {
           </Link>
 
           {/* Enhanced Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1 bg-gray-50/50 backdrop-blur-sm rounded-2xl px-2 py-2 border border-gray-200/50">
+          <div className="hidden md:flex items-center gap-1 bg-gray-50/50 backdrop-blur-sm rounded-2xl px-2 py-2 border border-gray-200/50">
             <Link 
               to="/" 
               className="px-6 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 font-semibold transition-all duration-300 rounded-xl relative group"
@@ -166,11 +166,11 @@ const Navbar = () => {
           </div>
 
           {/* Premium Search Bar */}
-          <div className="hidden sm:block flex-1 max-w-lg mx-8">
+          <div className="hidden md:block flex-1 max-w-md mx-4">
             <form onSubmit={handleSearch} className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+              <div className="relative flex items-center bg-white/80 backdrop-blur-sm border-2 border-gray-200/50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 focus-within:ring-4 focus-within:ring-green-500/20 focus-within:border-green-500 focus-within:bg-white">
+                <div className="absolute left-5 flex items-center pointer-events-none">
                   <i className="fas fa-search text-gray-500 group-focus-within:text-green-600 transition-colors duration-200"></i>
                 </div>
                 <input
@@ -178,26 +178,24 @@ const Navbar = () => {
                   placeholder="Search premium agricultural products..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  className="w-full pl-14 pr-6 py-4 rounded-2xl border-2 border-gray-200/50 focus:ring-4 focus:ring-green-500/20 focus:border-green-500 outline-none transition-all duration-300 bg-white/80 backdrop-blur-sm focus:bg-white shadow-lg hover:shadow-xl font-medium placeholder-gray-500"
+                  className="flex-1 pl-14 pr-4 py-4 rounded-l-2xl bg-transparent outline-none font-medium placeholder-gray-500"
                 />
                 <button
                   type="submit"
-                  className="absolute inset-y-0 right-0 pr-2 flex items-center"
+                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 rounded-r-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2"
                 >
-                  <div className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
-                    <i className="fas fa-search mr-2"></i>
-                    Search
-                  </div>
+                  <i className="fas fa-search"></i>
+                  <span className="hidden md:inline">Search</span>
                 </button>
               </div>
             </form>
           </div>
 
           {/* Premium Right section */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             {/* Mobile menu button */}
             <button
-              className="lg:hidden p-3 rounded-xl hover:bg-gray-100 transition-all duration-200 border border-gray-200"
+              className="md:hidden p-3 rounded-xl hover:bg-gray-100 transition-all duration-200 border border-gray-200"
               onClick={() => setMenuOpen(!menuOpen)}
             >
               <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'} text-xl text-gray-700`}></i>
@@ -216,7 +214,7 @@ const Navbar = () => {
                   <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full animate-pulse"></div>
                 )}
               </div>
-              <span className="hidden lg:block text-xs text-gray-500 text-center mt-1 font-medium">Cart</span>
+              <span className="hidden md:block text-xs text-gray-500 text-center mt-1 font-medium">Cart</span>
             </Link>
 
             {/* Premium Profile */}
@@ -233,7 +231,7 @@ const Navbar = () => {
                     <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>
                   )}
                 </div>
-                <div className="hidden lg:block text-left">
+                <div className="hidden md:block text-left">
                   <div className="text-sm font-bold text-gray-800">
                     {token && username ? username : 'Welcome'}
                   </div>
@@ -241,7 +239,7 @@ const Navbar = () => {
                     {token ? 'Premium Member' : 'Join Today'}
                   </div>
                 </div>
-                <i className="fas fa-chevron-down text-xs text-gray-400 hidden lg:block transition-transform duration-200 group-hover:rotate-180"></i>
+                <i className="fas fa-chevron-down text-xs text-gray-400 hidden md:block transition-transform duration-200 group-hover:rotate-180"></i>
               </button>
 
               {/* Profile dropdown */}
