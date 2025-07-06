@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 
 const UserProfile = () => {
@@ -7,45 +7,112 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
   const [orderHistory, setOrderHistory] = useState([]);
+  const [formData, setFormData] = useState({});
+
+  const API_BASE = window.location.hostname === 'localhost' 
+    ? "http://localhost:8000" 
+    : "https://qualityfarm-b-1.onrender.com";
+
+  const loadUserData = useCallback(async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('Please log in to view your profile');
+        setLoading(false);
+        return;
+      }
+
+      const response = await fetch(`${API_BASE}/profile/`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch profile data');
+      }
+
+      const userData = await response.json();
+      setUser(userData);
+      setFormData({
+        name: userData.name,
+        email: userData.email,
+        phone: userData.phone,
+        address: userData.address,
+      });
+      setLoading(false);
+    } catch (error) {
+      console.error('Error loading user data:', error);
+      toast.error('Failed to load profile data');
+      setLoading(false);
+    }
+  }, [API_BASE]);
+
+  const loadOrderHistory = useCallback(async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const response = await fetch(`${API_BASE}/profile/orders/`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const orders = await response.json();
+        setOrderHistory(orders);
+      }
+    } catch (error) {
+      console.error('Error loading order history:', error);
+    }
+  }, [API_BASE]);
 
   useEffect(() => {
     loadUserData();
-  }, []);
+    loadOrderHistory();
+  }, [loadUserData, loadOrderHistory]);
 
-  const loadUserData = async () => {
+  const handleSaveProfile = async () => {
     try {
-      // This would be replaced with actual API calls
-      setTimeout(() => {
-        setUser({
-          id: 1,
-          name: 'John Doe',
-          email: 'john.doe@example.com',
-          phone: '+256 123 456 789',
-          address: '123 Farm Road, Kampala, Uganda',
-          joinDate: '2024-01-15',
-          totalOrders: 12,
-          totalSpent: 450000,
-          avatar: null
-        });
-        
-        setOrderHistory([
-          { id: 1, orderNumber: 'QF-2025-001', date: '2025-07-01', total: 95000, status: 'delivered' },
-          { id: 2, orderNumber: 'QF-2025-002', date: '2025-06-28', total: 67000, status: 'delivered' },
-          { id: 3, orderNumber: 'QF-2025-003', date: '2025-06-25', total: 123000, status: 'delivered' }
-        ]);
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('Please log in to update your profile');
+        return;
+      }
 
-        setLoading(false);
-      }, 1000);
+      const response = await fetch(`${API_BASE}/profile/`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update profile');
+      }
+
+      // Reload user data to reflect changes
+      await loadUserData();
+      toast.success('Profile updated successfully!');
+      setIsEditing(false);
     } catch (error) {
-      toast.error('Failed to load user data');
-      setLoading(false);
+      console.error('Error updating profile:', error);
+      toast.error(error.message || 'Failed to update profile');
     }
   };
 
-  const handleSaveProfile = () => {
-    // This would send data to backend
-    toast.success('Profile updated successfully!');
-    setIsEditing(false);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const formatCurrency = (amount) => {
@@ -104,16 +171,16 @@ const UserProfile = () => {
               <p className="text-lg text-gray-600 font-medium mb-4">{user.email}</p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                 <div className="bg-gradient-to-r from-green-50 to-green-100 px-4 py-2 rounded-xl border border-green-200">
-                  <span className="text-green-700 font-bold">{user.totalOrders}</span>
+                  <span className="text-green-700 font-bold">{user.total_orders}</span>
                   <span className="text-green-600 text-sm ml-1">Orders</span>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 rounded-xl border border-blue-200">
-                  <span className="text-blue-700 font-bold">{formatCurrency(user.totalSpent)}</span>
+                  <span className="text-blue-700 font-bold">{formatCurrency(user.total_spent)}</span>
                   <span className="text-blue-600 text-sm ml-1">Spent</span>
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-purple-100 px-4 py-2 rounded-xl border border-purple-200">
                   <span className="text-purple-700 font-bold">Member since</span>
-                  <span className="text-purple-600 text-sm ml-1">{user.joinDate}</span>
+                  <span className="text-purple-600 text-sm ml-1">{user.join_date}</span>
                 </div>
               </div>
             </div>
@@ -180,7 +247,9 @@ const UserProfile = () => {
                   <label className="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
                   <input
                     type="text"
-                    defaultValue={user.name}
+                    name="name"
+                    value={isEditing ? formData.name || '' : user.name}
+                    onChange={handleInputChange}
                     disabled={!isEditing}
                     className={`w-full px-4 py-3 rounded-xl border transition-all duration-200 ${
                       isEditing
@@ -193,7 +262,9 @@ const UserProfile = () => {
                   <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
                   <input
                     type="email"
-                    defaultValue={user.email}
+                    name="email"
+                    value={isEditing ? formData.email || '' : user.email}
+                    onChange={handleInputChange}
                     disabled={!isEditing}
                     className={`w-full px-4 py-3 rounded-xl border transition-all duration-200 ${
                       isEditing
@@ -206,20 +277,18 @@ const UserProfile = () => {
                   <label className="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
                   <input
                     type="tel"
-                    defaultValue={user.phone}
-                    disabled={!isEditing}
-                    className={`w-full px-4 py-3 rounded-xl border transition-all duration-200 ${
-                      isEditing
-                        ? 'border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500'
-                        : 'border-gray-200 bg-gray-50'
-                    } outline-none`}
+                    name="phone"
+                    value={user.phone}
+                    disabled
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 outline-none"
                   />
+                  <p className="text-xs text-gray-500 mt-1">Phone number cannot be changed</p>
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">Join Date</label>
                   <input
                     type="text"
-                    value={user.joinDate}
+                    value={user.join_date}
                     disabled
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 outline-none"
                   />
@@ -227,7 +296,9 @@ const UserProfile = () => {
                 <div className="md:col-span-2">
                   <label className="block text-sm font-bold text-gray-700 mb-2">Address</label>
                   <textarea
-                    defaultValue={user.address}
+                    name="address"
+                    value={isEditing ? formData.address || '' : user.address}
+                    onChange={handleInputChange}
                     disabled={!isEditing}
                     rows="3"
                     className={`w-full px-4 py-3 rounded-xl border transition-all duration-200 ${
