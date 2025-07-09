@@ -15,9 +15,7 @@ function Checkout() {
   });
   const navigate = useNavigate();
 
-  const API_BASE = window.location.hostname === 'localhost' 
-    ? "http://localhost:8000" 
-    : "https://qualityfarm-b-1.onrender.com";
+  const API_BASE = "https://qualityfarm-b-1.onrender.com";
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -57,6 +55,8 @@ function Checkout() {
 
     try {
       const token = localStorage.getItem('token');
+      console.log('Token retrieved from localStorage:', token ? 'Token exists' : 'No token found');
+      
       if (!token) {
         toast.error('Please log in to place an order');
         navigate('/login');
@@ -74,6 +74,9 @@ function Checkout() {
         items
       };
 
+      console.log('Attempting to submit order to:', `${API_BASE}/orders/`);
+      console.log('Order payload:', orderPayload);
+      
       const response = await fetch(`${API_BASE}/orders/`, {
         method: 'POST',
         headers: {
@@ -83,8 +86,12 @@ function Checkout() {
         body: JSON.stringify(orderPayload),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
       if (response.ok) {
-        await response.json();
+        const result = await response.json();
+        console.log('Order created successfully:', result);
         toast.success('Order placed successfully!');
         
         // Clear cart
@@ -95,11 +102,27 @@ function Checkout() {
         navigate('/orders');
       } else {
         const errorData = await response.json();
-        toast.error(errorData.error || 'Failed to place order');
+        console.error('Order creation failed:', errorData);
+        
+        // Check for specific error messages
+        if (response.status === 500) {
+          toast.error('Server error. The order system may not be fully deployed yet.');
+        } else if (response.status === 401) {
+          toast.error('Authentication failed. Please log in again.');
+          navigate('/login');
+        } else {
+          toast.error(errorData.error || errorData.detail || 'Failed to place order');
+        }
       }
     } catch (error) {
       console.error('Order submission error:', error);
-      toast.error('Network error. Please try again.');
+      
+      // Check if it's a network error
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        toast.error('Unable to connect to server. Please check your internet connection and try again.');
+      } else {
+        toast.error('Network error. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
