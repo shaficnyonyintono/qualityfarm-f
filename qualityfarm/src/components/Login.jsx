@@ -80,55 +80,175 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-50">
-      <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-green-700 mb-6 text-center">
-          {step === 1 ? "Log In" : "Verify OTP"}
-        </h2>
-        {msg && <div className="mb-4 text-green-700 text-center">{msg}</div>}
-        {error && <div className="mb-4 text-red-600 text-center">{error}</div>}
-        {step === 1 ? (
-          <form onSubmit={handleSendOtp} className="space-y-5">
-            <div>
-              <label className="block text-gray-700 mb-1 font-medium">Phone Number</label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
-                required
-                placeholder="+256xxxxxxxxx"
-                className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-green-400"
-              />
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50 flex items-center justify-center p-4 pt-24">
+      <div className="w-full max-w-md">
+        {/* Logo and Brand */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 via-green-600 to-green-700 rounded-2xl shadow-xl mb-4">
+            <i className="fas fa-seedling text-white text-2xl"></i>
+          </div>
+          <h1 className="text-3xl font-black bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+            QualityFarm
+          </h1>
+          <p className="text-gray-600 font-medium mt-1">Premium Agricultural Excellence</p>
+        </div>
+
+        {/* Main Card */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-blue-500/5"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+          
+          <div className="relative z-10">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                {step === 1 ? "Welcome Back" : "Verify Your Phone"}
+              </h2>
+              <p className="text-gray-600">
+                {step === 1 
+                  ? "Enter your phone number to continue to your account" 
+                  : "Enter the verification code sent to your phone"
+                }
+              </p>
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white py-2 rounded font-semibold shadow transition-all duration-200"
-            >
-              {loading ? "Sending OTP..." : "Send OTP"}
-            </button>
-          </form>
-        ) : (
-          <form onSubmit={handleVerifyOtp} className="space-y-5">
-            <div>
-              <label className="block text-gray-700 mb-1 font-medium">Enter OTP</label>
-              <input
-                type="text"
-                value={otp}
-                onChange={e => setOtp(e.target.value)}
-                required
-                className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-green-400"
-              />
+
+            {/* Status Messages */}
+            {msg && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                <div className="flex items-center">
+                  <i className="fas fa-check-circle text-green-600 mr-3"></i>
+                  <p className="text-green-800 font-medium">{msg}</p>
+                </div>
+              </div>
+            )}
+            
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <div className="flex items-center">
+                  <i className="fas fa-exclamation-triangle text-red-600 mr-3"></i>
+                  <p className="text-red-800 font-medium">{error}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Forms */}
+            {step === 1 ? (
+              <form onSubmit={handleSendOtp} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <i className="fas fa-phone text-gray-400"></i>
+                    </div>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
+                      required
+                      placeholder="+256xxxxxxxxx"
+                      className="w-full pl-12 pr-4 py-4 bg-gray-50/80 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 font-medium placeholder-gray-400"
+                    />
+                  </div>
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {loading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+                      Sending OTP...
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center">
+                      <i className="fas fa-paper-plane mr-3"></i>
+                      Send OTP
+                    </div>
+                  )}
+                </button>
+              </form>
+            ) : (
+              <form onSubmit={handleVerifyOtp} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Verification Code
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <i className="fas fa-key text-gray-400"></i>
+                    </div>
+                    <input
+                      type="text"
+                      value={otp}
+                      onChange={e => setOtp(e.target.value)}
+                      required
+                      placeholder="Enter 6-digit code"
+                      maxLength="6"
+                      className="w-full pl-12 pr-4 py-4 bg-gray-50/80 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 font-medium placeholder-gray-400 text-center text-lg tracking-widest"
+                    />
+                  </div>
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {loading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+                      Verifying...
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center">
+                      <i className="fas fa-shield-alt mr-3"></i>
+                      Verify & Sign In
+                    </div>
+                  )}
+                </button>
+
+                {/* Back button */}
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="w-full text-gray-600 hover:text-gray-800 py-3 font-medium transition-colors duration-200"
+                >
+                  <i className="fas fa-arrow-left mr-2"></i>
+                  Back to Phone Number
+                </button>
+              </form>
+            )}
+
+            {/* Footer */}
+            <div className="mt-8 text-center">
+              <p className="text-sm text-gray-600">
+                Don't have an account?{' '}
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="text-green-600 hover:text-green-700 font-semibold transition-colors duration-200"
+                >
+                  Create Account
+                </button>
+              </p>
             </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white py-2 rounded font-semibold shadow transition-all duration-200"
-            >
-              {loading ? "Verifying..." : "Verify OTP"}
-            </button>
-          </form>
-        )}
+          </div>
+        </div>
+
+        {/* Additional Info */}
+        <div className="mt-6 text-center">
+          <p className="text-xs text-gray-500">
+            By continuing, you agree to our{' '}
+            <a href="#" className="text-green-600 hover:text-green-700 transition-colors">Terms of Service</a>
+            {' '}and{' '}
+            <a href="#" className="text-green-600 hover:text-green-700 transition-colors">Privacy Policy</a>
+          </p>
+        </div>
       </div>
     </div>
   );

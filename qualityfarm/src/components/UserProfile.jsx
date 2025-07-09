@@ -16,35 +16,69 @@ const UserProfile = () => {
   const loadUserData = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
+      console.log('Token found:', !!token); // Debug log
+      
       if (!token) {
         toast.error('Please log in to view your profile');
+        setUser(null);
         setLoading(false);
         return;
       }
 
+      console.log('Making API call to:', `${API_BASE}/profile/`); // Debug log
+
       const response = await fetch(`${API_BASE}/profile/`, {
+        method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
 
+      console.log('Response status:', response.status); // Debug log
+
+      if (response.status === 401) {
+        // Token expired or invalid
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        toast.error('Session expired. Please log in again.');
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
       if (!response.ok) {
-        throw new Error('Failed to fetch profile data');
+        const errorText = await response.text();
+        console.error('Error response:', errorText); // Debug log
+        toast.error(`Failed to load profile: ${response.status} ${response.statusText}`);
+        setUser(null);
+        setLoading(false);
+        return;
       }
 
       const userData = await response.json();
+      console.log('User data received:', userData); // Debug log
+      
+      if (!userData || !userData.name) {
+        console.error('Invalid user data received:', userData);
+        toast.error('Invalid profile data received');
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+      
       setUser(userData);
       setFormData({
-        name: userData.name,
-        email: userData.email,
-        phone: userData.phone,
-        address: userData.address,
+        name: userData.name || '',
+        email: userData.email || '',
+        phone: userData.phone || '',
+        address: userData.address || '',
       });
       setLoading(false);
     } catch (error) {
       console.error('Error loading user data:', error);
-      toast.error('Failed to load profile data');
+      toast.error(`Failed to load profile data: ${error.message}`);
+      setUser(null);
       setLoading(false);
     }
   }, [API_BASE]);
@@ -142,6 +176,33 @@ const UserProfile = () => {
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-600 font-medium">Loading profile...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If user is null after loading, show error state
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto p-8">
+          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i className="fas fa-exclamation-triangle text-red-500 text-2xl"></i>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Profile Not Available</h2>
+          <p className="text-gray-600 mb-6">
+            Unable to load your profile data. Please try logging in again.
+          </p>
+          <button 
+            onClick={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('username');
+              window.location.href = '/login';
+            }}
+            className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+          >
+            Go to Login
+          </button>
         </div>
       </div>
     );
