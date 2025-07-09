@@ -18,6 +18,8 @@ import Login from './components/Login'
 import LatestProductsPage from './components/LatestProductsPage'
 import Checkout from './components/Checkout'
 import UserProfile from './components/UserProfile'
+import Orders from './components/Orders'
+import OrderDetail from './components/OrderDetail'
 import Navbar from './components/NavbarNew'
 import Footer from './components/Footer'
 import { ToastContainer } from "react-toastify";
@@ -110,6 +112,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/profile" element={
           <Layout>
             <UserProfile />
+          </Layout>
+        } />
+        <Route path="/orders" element={
+          <Layout>
+            <Orders />
+          </Layout>
+        } />
+        <Route path="/orders/:orderId" element={
+          <Layout>
+            <OrderDetail />
           </Layout>
         } />
         
