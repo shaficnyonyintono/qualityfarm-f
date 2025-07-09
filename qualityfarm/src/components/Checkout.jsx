@@ -11,11 +11,37 @@ function Checkout() {
     customer_phone: '',
     delivery_address: '',
     delivery_city: '',
-    delivery_notes: ''
+    delivery_notes: '',
+    payment_method: 'cash_on_delivery',
+    momo_phone: ''
   });
   const navigate = useNavigate();
 
   const API_BASE = "https://qualityfarm-b-1.onrender.com";
+
+  const paymentMethods = [
+    {
+      id: 'cash_on_delivery',
+      name: 'Cash on Delivery',
+      description: 'Pay when your order is delivered',
+      icon: '💵',
+      popular: true
+    },
+    {
+      id: 'mtn_momo',
+      name: 'MTN Mobile Money',
+      description: 'Pay with MTN MoMo',
+      icon: '📱',
+      popular: true
+    },
+    {
+      id: 'airtel_money',
+      name: 'Airtel Money',
+      description: 'Pay with Airtel Money',
+      icon: '📱',
+      popular: false
+    }
+  ];
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -83,37 +109,6 @@ function Checkout() {
         'Content-Type': 'application/json'
       });
 
-      // First test with the debug endpoint
-      console.log('Testing debug endpoint first...');
-      const testResponse = await fetch(`${API_BASE}/test-order/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ test: 'data' }),
-      });
-      
-      console.log('Test response status:', testResponse.status);
-      const testResult = await testResponse.text();
-      console.log('Test response:', testResult);
-      
-      // Test authentication by checking profile endpoint
-      console.log('Testing authentication...');
-      const profileResponse = await fetch(`${API_BASE}/profile/`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      console.log('Profile response status:', profileResponse.status);
-      if (profileResponse.ok) {
-        const profileData = await profileResponse.json();
-        console.log('Profile data:', profileData);
-      } else {
-        console.error('Profile request failed');
-      }
-      
       const response = await fetch(`${API_BASE}/orders/`, {
         method: 'POST',
         headers: {
@@ -131,7 +126,17 @@ function Checkout() {
       if (response.ok) {
         const result = await response.json();
         console.log('Order created successfully:', result);
-        toast.success('Order placed successfully!');
+        
+        // Show success message based on payment method
+        if (orderData.payment_method === 'cash_on_delivery') {
+          toast.success('Order placed successfully! Pay when delivered.');
+        } else if (orderData.payment_method === 'mtn_momo') {
+          toast.success('Order placed! Check your phone for MTN MoMo payment prompt.');
+        } else if (orderData.payment_method === 'airtel_money') {
+          toast.success('Order placed! Check your phone for Airtel Money payment prompt.');
+        } else {
+          toast.success('Order placed successfully!');
+        }
         
         // Clear cart
         localStorage.removeItem('cart');
@@ -326,6 +331,70 @@ function Checkout() {
                 />
               </div>
 
+              {/* Payment Method Selection */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Payment Method *
+                </label>
+                <div className="space-y-3">
+                  {paymentMethods.map((method) => (
+                    <div
+                      key={method.id}
+                      className={`relative border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                        orderData.payment_method === method.id
+                          ? 'border-green-500 bg-green-50'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                      onClick={() => setOrderData(prev => ({ ...prev, payment_method: method.id }))}
+                    >
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          name="payment_method"
+                          value={method.id}
+                          checked={orderData.payment_method === method.id}
+                          onChange={handleInputChange}
+                          className="w-4 h-4 text-green-600 focus:ring-green-500"
+                        />
+                        <div className="ml-3 flex-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-lg">{method.icon}</span>
+                            <span className="font-medium text-gray-900">{method.name}</span>
+                            {method.popular && (
+                              <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+                                Popular
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-600 mt-1">{method.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mobile Money Phone Number (only show for MoMo payments) */}
+              {(orderData.payment_method === 'mtn_momo' || orderData.payment_method === 'airtel_money') && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Mobile Money Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="momo_phone"
+                    value={orderData.momo_phone || orderData.customer_phone}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Enter mobile money number"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                  <p className="text-xs text-blue-600 mt-1">
+                    You will receive a payment prompt on this number
+                  </p>
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={loading}
@@ -337,7 +406,13 @@ function Checkout() {
                     Placing Order...
                   </div>
                 ) : (
-                  'Place Order'
+                  orderData.payment_method === 'cash_on_delivery' 
+                    ? 'Place Order (Cash on Delivery)'
+                    : orderData.payment_method === 'mtn_momo'
+                    ? 'Place Order & Pay with MTN MoMo'
+                    : orderData.payment_method === 'airtel_money'
+                    ? 'Place Order & Pay with Airtel Money'
+                    : 'Place Order'
                 )}
               </button>
             </form>
