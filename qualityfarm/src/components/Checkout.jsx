@@ -23,11 +23,14 @@ function Checkout() {
     
     // Pre-fill with user data if available
     const username = localStorage.getItem('username');
+    const userProfile = JSON.parse(localStorage.getItem('userProfile') || '{}');
+    
     if (username) {
       setOrderData(prev => ({
         ...prev,
-        customer_name: username,
-        customer_phone: username // Since username is phone in your system
+        customer_name: userProfile.name || username, // Use actual name if available
+        customer_phone: username, // Username is phone in your system
+        customer_email: userProfile.email || ''
       }));
     }
   }, []);
@@ -95,6 +98,23 @@ function Checkout() {
       const testResult = await testResponse.text();
       console.log('Test response:', testResult);
       
+      // Test authentication by checking profile endpoint
+      console.log('Testing authentication...');
+      const profileResponse = await fetch(`${API_BASE}/profile/`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      console.log('Profile response status:', profileResponse.status);
+      if (profileResponse.ok) {
+        const profileData = await profileResponse.json();
+        console.log('Profile data:', profileData);
+      } else {
+        console.error('Profile request failed');
+      }
+      
       const response = await fetch(`${API_BASE}/orders/`, {
         method: 'POST',
         headers: {
@@ -116,6 +136,7 @@ function Checkout() {
         
         // Clear cart
         localStorage.removeItem('cart');
+        setCart([]); // Clear local state as well
         window.dispatchEvent(new Event('cartUpdated'));
         
         // Redirect to orders page

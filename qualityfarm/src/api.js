@@ -1,6 +1,4 @@
-const API_BASE = window.location.hostname === 'localhost' 
-  ? "http://localhost:8000" 
-  : "https://qualityfarm-b-1.onrender.com";
+const API_BASE = "https://qualityfarm-b-1.onrender.com";
 
 export async function fetchProducts() {
   const res = await fetch(`${API_BASE}/items/`);
