@@ -101,12 +101,20 @@ function Checkout() {
         // Redirect to orders page
         navigate('/orders');
       } else {
-        const errorData = await response.json();
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (parseError) {
+          console.error('Error parsing response:', parseError);
+          errorData = { error: 'Failed to parse error response' };
+        }
         console.error('Order creation failed:', errorData);
+        console.error('Response status:', response.status);
+        console.error('Response statusText:', response.statusText);
         
         // Check for specific error messages
         if (response.status === 500) {
-          toast.error('Server error. The order system may not be fully deployed yet.');
+          toast.error('Server error. Please run database migrations: python manage.py migrate');
         } else if (response.status === 401) {
           toast.error('Authentication failed. Please log in again.');
           navigate('/login');
