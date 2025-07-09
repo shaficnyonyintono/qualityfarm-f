@@ -75,7 +75,25 @@ function Checkout() {
       };
 
       console.log('Attempting to submit order to:', `${API_BASE}/orders/`);
-      console.log('Order payload:', orderPayload);
+      console.log('Order payload:', JSON.stringify(orderPayload, null, 2));
+      console.log('Headers:', {
+        'Authorization': `Bearer ${token ? token.substring(0, 20) + '...' : 'NO_TOKEN'}`,
+        'Content-Type': 'application/json'
+      });
+
+      // First test with the debug endpoint
+      console.log('Testing debug endpoint first...');
+      const testResponse = await fetch(`${API_BASE}/test-order/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ test: 'data' }),
+      });
+      
+      console.log('Test response status:', testResponse.status);
+      const testResult = await testResponse.text();
+      console.log('Test response:', testResult);
       
       const response = await fetch(`${API_BASE}/orders/`, {
         method: 'POST',
@@ -87,7 +105,9 @@ function Checkout() {
       });
 
       console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
+      console.log('Response statusText:', response.statusText);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+      console.log('Response URL:', response.url);
 
       if (response.ok) {
         const result = await response.json();
@@ -102,19 +122,40 @@ function Checkout() {
         navigate('/orders');
       } else {
         let errorData;
+        let responseText = '';
+        
         try {
-          errorData = await response.json();
+          // First try to get the response as text
+          responseText = await response.text();
+          console.log('Raw response text:', responseText);
+          
+          // Then try to parse it as JSON
+          errorData = JSON.parse(responseText);
         } catch (parseError) {
           console.error('Error parsing response:', parseError);
-          errorData = { error: 'Failed to parse error response' };
+          console.error('Response text:', responseText);
+          
+          // If JSON parsing fails, create error object with the raw text
+          errorData = { 
+            error: 'Server error',
+            details: responseText.substring(0, 500) // First 500 chars of response
+          };
         }
+        
         console.error('Order creation failed:', errorData);
         console.error('Response status:', response.status);
         console.error('Response statusText:', response.statusText);
+        console.error('Response headers:', Object.fromEntries(response.headers.entries()));
         
         // Check for specific error messages
         if (response.status === 500) {
-          toast.error('Server error. Please run database migrations: python manage.py migrate');
+          if (responseText.includes('no such table') || responseText.includes('relation') || responseText.includes('does not exist')) {
+            toast.error('Database not set up. Please run migrations: python manage.py migrate');
+          } else if (responseText.includes('CORS')) {
+            toast.error('CORS error. Please check server configuration.');
+          } else {
+            toast.error('Server error. Check console for details.');
+          }
         } else if (response.status === 401) {
           toast.error('Authentication failed. Please log in again.');
           navigate('/login');
