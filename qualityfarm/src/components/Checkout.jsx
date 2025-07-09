@@ -37,11 +37,10 @@ function Checkout() {
 
   const calculateTotals = () => {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const deliveryFee = 10000; // Fixed delivery fee
     const taxAmount = subtotal * 0.18; // 18% tax
-    const total = subtotal + deliveryFee + taxAmount;
+    const total = subtotal + taxAmount;
     
-    return { subtotal, deliveryFee, taxAmount, total };
+    return { subtotal, taxAmount, total };
   };
 
   const handleInputChange = (e) => {
@@ -198,7 +197,7 @@ function Checkout() {
     }
   };
 
-  const { subtotal, deliveryFee, taxAmount, total } = calculateTotals();
+  const { subtotal, taxAmount, total } = calculateTotals();
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-UG', {
@@ -373,10 +372,6 @@ function Checkout() {
               <div className="flex justify-between text-sm">
                 <span>Subtotal:</span>
                 <span>{formatCurrency(subtotal)}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span>Delivery Fee:</span>
-                <span>{formatCurrency(deliveryFee)}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span>Tax (18%):</span>
