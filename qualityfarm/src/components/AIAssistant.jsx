@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 
-const OPENAI_API_KEY = "";
-const HF_API_KEY = "";
-
 const initialMessages = [
-  { role: "assistant", content: "Hi! How can I help you today?" }
+  { role: "assistant", content: "Hi! Welcome to QualityFarm! 🌾 I'm your AI assistant and I'm here to help you find the perfect agricultural equipment and provide farming advice. How can I assist you today?" }
 ];
 
 const AIAssistant = () => {
@@ -16,31 +13,38 @@ const AIAssistant = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-    const newMessages = [...messages, { role: "user", content: input }];
+    
+    const userMessage = { role: "user", content: input };
+    const newMessages = [...messages, userMessage];
     setMessages(newMessages);
     setInput("");
     setLoading(true);
 
     try {
-      const res = await fetch("https:/.openai.com/v1/chat/completions", {
+      const response = await fetch("https://qualityfarm-b-1.onrender.com/api/ai/chat/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo", // or "gpt-4" if you have access
-          messages: newMessages.map(m => ({
-            role: m.role,
-            content: m.content
-          })),
+          message: userMessage.content,
+          history: messages.slice(-5) // Send last 5 messages for context
         }),
       });
-      const data = await res.json();
-      const aiReply = data.choices?.[0]?.message?.content || "Sorry, I couldn't understand that.";
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const aiReply = data.response || "Sorry, I couldn't process that request.";
       setMessages([...newMessages, { role: "assistant", content: aiReply }]);
-    } catch {
-      setMessages([...newMessages, { role: "assistant", content: "Error contacting AI service." }]);
+    } catch (error) {
+      console.error("AI Assistant error:", error);
+      setMessages([...newMessages, { 
+        role: "assistant", 
+        content: "I'm sorry, I'm having trouble connecting right now. Please try again later or contact our support team for assistance with your farming needs." 
+      }]);
     }
     setLoading(false);
   };
@@ -55,21 +59,7 @@ const AIAssistant = () => {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          style={{
-            position: "fixed",
-            bottom: 30,
-            right: 30,
-            width: 60,
-            height: 60,
-            borderRadius: "50%",
-            background: "#4ade80",
-            color: "#fff",
-            border: "none",
-            boxShadow: "0 2px 8px #0002",
-            fontSize: 28,
-            cursor: "pointer",
-            zIndex: 1000,
-          }}
+          className="fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center text-2xl z-50"
           aria-label="Open AI Assistant"
         >
           🤖
@@ -78,79 +68,77 @@ const AIAssistant = () => {
 
       {/* Chat window */}
       {open && (
-        <div style={{
-          position: "fixed",
-          bottom: 30,
-          right: 30,
-          width: 350,
-          background: "#fff",
-          border: "1px solid #ccc",
-          borderRadius: 16,
-          boxShadow: "0 2px 16px #0003",
-          zIndex: 1000,
-          display: "flex",
-          flexDirection: "column"
-        }}>
-          <div style={{
-            padding: 12,
-            borderBottom: "1px solid #eee",
-            fontWeight: "bold",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center"
-          }}>
-            <span>AI Assistant</span>
-            <div>
+        <div className="fixed bottom-6 right-6 w-96 bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 flex flex-col max-h-[600px]">
+          <div className="p-4 border-b border-gray-100 bg-green-500 text-white rounded-t-2xl flex justify-between items-center">
+            <div className="flex items-center space-x-2">
+              <span className="text-2xl">🤖</span>
+              <div>
+                <span className="font-semibold">QualityFarm AI Assistant</span>
+                <p className="text-xs text-green-100">Online • Ready to help</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
               <button
                 onClick={handleClearChat}
-                style={{
-                  background: "#f3f4f6",
-                  border: "none",
-                  borderRadius: 6,
-                  padding: "2px 10px",
-                  marginRight: 8,
-                  cursor: "pointer",
-                  color: "#555",
-                  fontSize: 13
-                }}
+                className="bg-green-400 hover:bg-green-300 text-white px-3 py-1 rounded-md text-sm transition-colors"
                 aria-label="Clear Chat"
               >
                 Clear
               </button>
               <button
                 onClick={() => setOpen(false)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  fontSize: 20,
-                  cursor: "pointer",
-                  color: "#888"
-                }}
+                className="text-white hover:text-green-100 text-xl font-bold"
                 aria-label="Close"
               >×</button>
             </div>
           </div>
-          <div style={{ maxHeight: 300, overflowY: "auto", padding: 12, flex: 1 }}>
+          
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 max-h-80">
             {messages.map((msg, idx) => (
-              <div key={idx} style={{ margin: "8px 0", textAlign: msg.role === "user" ? "right" : "left" }}>
-                <span style={{ background: msg.role === "user" ? "#e0ffe0" : "#f0f0f0", padding: "6px 12px", borderRadius: 16, display: "inline-block" }}>
-                  {msg.content}
-                </span>
+              <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                <div className={`max-w-xs px-4 py-2 rounded-2xl ${
+                  msg.role === "user" 
+                    ? "bg-green-500 text-white rounded-br-sm" 
+                    : "bg-gray-100 text-gray-800 rounded-bl-sm"
+                }`}>
+                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                </div>
               </div>
             ))}
-            {loading && <div>AI is typing...</div>}
+            {loading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 px-4 py-2 rounded-2xl rounded-bl-sm">
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-          <form onSubmit={sendMessage} style={{ display: "flex", borderTop: "1px solid #eee" }}>
-            <input
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              placeholder="Ask me anything..."
-              style={{ flex: 1, border: "none", padding: 10, outline: "none" }}
-              disabled={loading}
-            />
-            <button type="submit" disabled={loading || !input.trim()} style={{ padding: "0 16px", border: "none", background: "#4ade80", color: "#fff", borderRadius: "0 0 16px 0" }}>
-              Send
-            </button>
+          
+          <form onSubmit={sendMessage} className="p-4 border-t border-gray-100">
+            <div className="flex space-x-2">
+              <input
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                placeholder="Ask about farming equipment, tips, or anything agriculture-related..."
+                className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                disabled={loading}
+              />
+              <button 
+                type="submit" 
+                disabled={loading || !input.trim()} 
+                className="bg-green-500 hover:bg-green-600 disabled:bg-gray-300 text-white px-6 py-2 rounded-full transition-colors flex items-center justify-center min-w-[60px]"
+              >
+                {loading ? (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <span>Send</span>
+                )}
+              </button>
+            </div>
           </form>
         </div>
       )}
