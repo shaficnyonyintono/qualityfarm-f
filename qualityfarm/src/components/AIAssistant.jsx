@@ -21,7 +21,7 @@ const AIAssistant = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://qualityfarm-b-1.onrender.com/api/ai/chat/", {
+      const response = await fetch("https://qualityfarm-b-1.onrender.com/ai/chat/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
