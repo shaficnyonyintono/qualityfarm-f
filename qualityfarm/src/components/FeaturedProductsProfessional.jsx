@@ -170,10 +170,10 @@ const ProfessionalFeaturedProducts = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Professional Header */}
         <div className="text-center mb-8" data-aos="fade-up">
-          <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight" data-aos="fade-up" data-aos-delay="200">
+          <h2 className="text-2xl md:text-5xl font-black text-gray-900 mb-4 md:mb-6 tracking-tight" data-aos="fade-up" data-aos-delay="200">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Products</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4" data-aos="fade-up" data-aos-delay="400">
             Discover our handpicked collection of premium agricultural products, 
             carefully selected for their exceptional quality and proven performance.
           </p>
@@ -183,7 +183,7 @@ const ProfessionalFeaturedProducts = () => {
             <div className="mt-8" data-aos="fade-up" data-aos-delay="600">
               <button
                 onClick={() => navigate("/")}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 px-4 md:px-8 py-2 md:py-4 rounded-xl md:rounded-2xl font-medium md:font-semibold shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl transition-all duration-300 text-sm md:text-base"
               >
                 <i className="fas fa-arrow-left"></i>
                 Back to Home
@@ -222,11 +222,11 @@ const ProfessionalFeaturedProducts = () => {
             >
               {Array.from({ length: Math.ceil(products.length / 4) }).map((_, slideIndex) => (
                 <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                     {products.slice(slideIndex * 4, (slideIndex + 1) * 4).map((product, idx) => (
                       <div
                         key={product.id || idx}
-                        className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2"
+                        className="group bg-white rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2"
                         data-aos="fade-up"
                         data-aos-delay={idx * 100}
                         data-aos-duration="600"
@@ -245,51 +245,51 @@ const ProfessionalFeaturedProducts = () => {
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center">
-                              <i className="fas fa-image text-4xl text-gray-400"></i>
+                              <i className="fas fa-image text-2xl md:text-4xl text-gray-400"></i>
                             </div>
                           )}
                           
                           {/* Overlay badges */}
-                          <div className="absolute top-4 left-4">
-                            <span className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                          <div className="absolute top-2 md:top-4 left-2 md:left-4">
+                            <span className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 md:px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                               Featured
                             </span>
                           </div>
                           
                           {/* Quick action buttons */}
-                          <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-red-500 w-10 h-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center">
-                              <i className="fas fa-heart"></i>
+                          <div className="absolute top-2 md:top-4 right-2 md:right-4 flex flex-col gap-1 md:gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-red-500 w-8 md:w-10 h-8 md:h-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center">
+                              <i className="fas fa-heart text-xs md:text-sm"></i>
                             </button>
-                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-blue-500 w-10 h-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center">
-                              <i className="fas fa-eye"></i>
+                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-blue-500 w-8 md:w-10 h-8 md:h-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center">
+                              <i className="fas fa-eye text-xs md:text-sm"></i>
                             </button>
                           </div>
                         </div>
 
                         {/* Product Info */}
-                        <div className="p-6">
+                        <div className="p-3 md:p-6">
                           {/* Category */}
                           {product.category && (
-                            <div className="mb-3">
-                              <span className="inline-block bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold border border-green-200">
+                            <div className="mb-2 md:mb-3">
+                              <span className="inline-block bg-green-50 text-green-700 px-2 md:px-3 py-1 rounded-full text-xs font-semibold border border-green-200">
                                 {product.category.name || product.category}
                               </span>
                             </div>
                           )}
 
                           {/* Title */}
-                          <h3 className="font-bold text-gray-900 text-lg mb-3 line-clamp-2 group-hover:text-green-600 transition-colors duration-200">
+                          <h3 className="font-semibold md:font-bold text-gray-900 text-sm md:text-lg mb-2 md:mb-3 line-clamp-2 group-hover:text-green-600 transition-colors duration-200">
                             {product.title}
                           </h3>
 
                           {/* Description */}
-                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                          <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">
                             {product.description || 'Premium quality agricultural product for optimal results.'}
                           </p>
 
                           {/* Rating */}
-                          <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center justify-between mb-3 md:mb-4">
                             <StarRating 
                               rating={product.average_rating || 0} 
                               onRate={(rating) => handleRate(product.id, rating)}
@@ -302,13 +302,13 @@ const ProfessionalFeaturedProducts = () => {
                           </div>
 
                           {/* Price */}
-                          <div className="flex items-center justify-between mb-6">
+                          <div className="flex items-center justify-between mb-4 md:mb-6">
                             <div>
-                              <span className="text-2xl font-black text-gray-900">
+                              <span className="text-lg md:text-2xl font-bold md:font-black text-gray-900">
                                 {formatCurrency(product.price)}
                               </span>
                               {product.original_price && product.original_price > product.price && (
-                                <span className="ml-2 text-sm text-gray-500 line-through">
+                                <span className="ml-1 md:ml-2 text-xs md:text-sm text-gray-500 line-through">
                                   {formatCurrency(product.original_price)}
                                 </span>
                               )}
@@ -316,19 +316,20 @@ const ProfessionalFeaturedProducts = () => {
                           </div>
 
                           {/* Actions */}
-                          <div className="flex gap-3">
+                          <div className="flex gap-2 md:gap-3">
                             <button
                               onClick={() => handleAddToCart(product)}
-                              className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                              className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold md:font-bold py-2 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl transition-all duration-300 shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-1 md:gap-2 text-xs md:text-sm"
                             >
-                              <i className="fas fa-shopping-cart"></i>
-                              Add to Cart
+                              <i className="fas fa-shopping-cart text-xs md:text-sm"></i>
+                              <span className="hidden sm:inline">Add to Cart</span>
+                              <span className="sm:hidden">Add</span>
                             </button>
                             <Link
                               to={`/product/${encodeURIComponent(product.title)}`}
-                              className="bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-900 font-semibold py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center"
+                              className="bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-900 font-medium md:font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl transition-all duration-200 flex items-center justify-center"
                             >
-                              <i className="fas fa-info-circle"></i>
+                              <i className="fas fa-info-circle text-xs md:text-sm"></i>
                             </Link>
                           </div>
                         </div>

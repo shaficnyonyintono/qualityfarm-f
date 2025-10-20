@@ -89,34 +89,34 @@ const HeroSection = () => {
               className="animate-fadeInUp"
             >
               {/* Subtitle */}
-              <div className="mb-3" data-aos="fade-right" data-aos-duration="1000">
-                <span className="inline-block px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">
+              <div className="mb-2 md:mb-3" data-aos="fade-right" data-aos-duration="1000">
+                <span className="inline-block px-2 md:px-3 py-1 md:py-1.5 bg-white/10 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">
                   {heroSlides[currentSlide].subtitle}
                 </span>
               </div>
 
               {/* Main Title */}
-              <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+              <h1 className="text-xl md:text-4xl font-bold text-white mb-3 md:mb-4 leading-tight" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 {heroSlides[currentSlide].title}
               </h1>
 
               {/* Description */}
-              <p className="text-sm md:text-lg text-white/90 mb-6 leading-relaxed max-w-2xl">
+              <p className="text-sm md:text-lg text-white/90 mb-4 md:mb-6 leading-relaxed max-w-2xl">
                 {heroSlides[currentSlide].description}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                 <Link
                   to={heroSlides[currentSlide].buttonLink}
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white text-green-700 font-semibold rounded-full hover:bg-green-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm"
+                  className="inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 bg-white text-green-700 font-medium md:font-semibold rounded-full hover:bg-green-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-xs md:text-sm"
                 >
                   {heroSlides[currentSlide].buttonText}
-                  <i className="fas fa-arrow-right ml-2"></i>
+                  <i className="fas fa-arrow-right ml-1 md:ml-2 text-xs"></i>
                 </Link>
                 <Link
                   to="/about"
-                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-green-700 transition-all duration-300 text-sm"
+                  className="inline-flex items-center justify-center px-4 md:px-6 py-2 md:py-3 border-2 border-white text-white font-medium md:font-semibold rounded-full hover:bg-white hover:text-green-700 transition-all duration-300 text-xs md:text-sm"
                 >
                   Learn More
                 </Link>
