@@ -214,14 +214,14 @@ function Checkout() {
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 pt-24">
-        <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-          <i className="fas fa-shopping-cart text-6xl text-gray-300 mb-4"></i>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
-          <p className="text-gray-600 mb-6">Add some items to your cart to proceed with checkout.</p>
+      <div className="min-h-screen bg-gray-50 pt-16 md:pt-24">
+        <div className="max-w-2xl mx-auto px-4 py-8 md:py-16 text-center">
+          <i className="fas fa-shopping-cart text-4xl md:text-6xl text-gray-300 mb-4"></i>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
+          <p className="text-sm md:text-base text-gray-600 mb-6">Add some items to your cart to proceed with checkout.</p>
           <button
             onClick={() => navigate('/products')}
-            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
+            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors text-sm md:text-base"
           >
             Continue Shopping
           </button>
@@ -231,20 +231,20 @@ function Checkout() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
-          <p className="text-gray-600 mt-2">Complete your order details</p>
+    <div className="min-h-screen bg-gray-50 pt-16 md:pt-24">
+      <div className="max-w-7xl mx-auto px-4 py-4 md:py-8">
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Checkout</h1>
+          <p className="text-sm md:text-base text-gray-600 mt-2">Complete your order details</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Order Form */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Delivery Information</h2>
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-4 md:mb-6">Delivery Information</h2>
             
-            <form onSubmit={handleOrder} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleOrder} className="space-y-3 md:space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name *
@@ -255,7 +255,7 @@ function Checkout() {
                     value={orderData.customer_name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+                    className="w-full px-3 py-2.5 md:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-sm md:text-base"
                   />
                 </div>
                 
@@ -269,7 +269,7 @@ function Checkout() {
                     value={orderData.customer_email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+                    className="w-full px-3 py-2.5 md:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-sm md:text-base"
                   />
                 </div>
               </div>
@@ -284,7 +284,7 @@ function Checkout() {
                   value={orderData.customer_phone}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+                  className="w-full px-3 py-2.5 md:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-sm md:text-base"
                 />
               </div>
 
@@ -298,7 +298,7 @@ function Checkout() {
                   onChange={handleInputChange}
                   required
                   rows="3"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+                  className="w-full px-3 py-2.5 md:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-sm md:text-base"
                   placeholder="Enter your full delivery address"
                 />
               </div>
@@ -313,7 +313,7 @@ function Checkout() {
                   value={orderData.delivery_city}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+                  className="w-full px-3 py-2.5 md:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-sm md:text-base"
                 />
               </div>
 
@@ -326,7 +326,7 @@ function Checkout() {
                   value={orderData.delivery_notes}
                   onChange={handleInputChange}
                   rows="2"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+                  className="w-full px-3 py-2.5 md:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-sm md:text-base"
                   placeholder="Any special delivery instructions"
                 />
               </div>
@@ -336,11 +336,11 @@ function Checkout() {
                 <label className="block text-sm font-medium text-gray-700 mb-3">
                   Payment Method *
                 </label>
-                <div className="space-y-3">
+                <div className="space-y-2 md:space-y-3">
                   {paymentMethods.map((method) => (
                     <div
                       key={method.id}
-                      className={`relative border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                      className={`relative border-2 rounded-lg p-3 md:p-4 cursor-pointer transition-all ${
                         orderData.payment_method === method.id
                           ? 'border-green-500 bg-green-50'
                           : 'border-gray-200 hover:border-gray-300'
@@ -354,19 +354,19 @@ function Checkout() {
                           value={method.id}
                           checked={orderData.payment_method === method.id}
                           onChange={handleInputChange}
-                          className="w-4 h-4 text-green-600 focus:ring-green-500"
+                          className="w-4 h-4 text-green-600 focus:ring-green-500 flex-shrink-0"
                         />
-                        <div className="ml-3 flex-1">
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg">{method.icon}</span>
-                            <span className="font-medium text-gray-900">{method.name}</span>
+                        <div className="ml-3 flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-base md:text-lg">{method.icon}</span>
+                            <span className="font-medium text-gray-900 text-sm md:text-base">{method.name}</span>
                             {method.popular && (
                               <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
                                 Popular
                               </span>
                             )}
                           </div>
-                          <p className="text-sm text-gray-600 mt-1">{method.description}</p>
+                          <p className="text-xs md:text-sm text-gray-600 mt-1">{method.description}</p>
                         </div>
                       </div>
                     </div>
@@ -376,7 +376,7 @@ function Checkout() {
 
               {/* Mobile Money Phone Number (only show for MoMo payments) */}
               {(orderData.payment_method === 'mtn_momo' || orderData.payment_method === 'airtel_money') && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Mobile Money Phone Number *
                   </label>
@@ -387,7 +387,7 @@ function Checkout() {
                     onChange={handleInputChange}
                     required
                     placeholder="Enter mobile money number"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full px-3 py-2.5 md:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm md:text-base"
                   />
                   <p className="text-xs text-blue-600 mt-1">
                     You will receive a payment prompt on this number
@@ -398,44 +398,57 @@ function Checkout() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="w-full bg-green-600 text-white py-3 md:py-3 rounded-lg font-semibold hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors text-sm md:text-base"
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Placing Order...
+                    <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    <span className="text-sm md:text-base">Placing Order...</span>
                   </div>
                 ) : (
-                  orderData.payment_method === 'cash_on_delivery' 
-                    ? 'Place Order (Cash on Delivery)'
-                    : orderData.payment_method === 'mtn_momo'
-                    ? 'Place Order & Pay with MTN MoMo'
-                    : orderData.payment_method === 'airtel_money'
-                    ? 'Place Order & Pay with Airtel Money'
-                    : 'Place Order'
+                  <>
+                    <span className="block md:hidden">
+                      {orderData.payment_method === 'cash_on_delivery' 
+                        ? 'Place Order (COD)'
+                        : orderData.payment_method === 'mtn_momo'
+                        ? 'Place Order (MTN)'
+                        : orderData.payment_method === 'airtel_money'
+                        ? 'Place Order (Airtel)'
+                        : 'Place Order'}
+                    </span>
+                    <span className="hidden md:block">
+                      {orderData.payment_method === 'cash_on_delivery' 
+                        ? 'Place Order (Cash on Delivery)'
+                        : orderData.payment_method === 'mtn_momo'
+                        ? 'Place Order & Pay with MTN MoMo'
+                        : orderData.payment_method === 'airtel_money'
+                        ? 'Place Order & Pay with Airtel Money'
+                        : 'Place Order'}
+                    </span>
+                  </>
                 )}
               </button>
             </form>
           </div>
 
           {/* Order Summary */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Order Summary</h2>
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 order-first lg:order-last">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-4 md:mb-6">Order Summary</h2>
             
-            <div className="space-y-4 mb-6">
+            <div className="space-y-3 md:space-y-4 mb-4 md:mb-6">
               {cart.map((item) => (
-                <div key={item.id} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg">
-                  <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                <div key={item.id} className="flex items-center gap-3 p-3 md:p-4 border border-gray-200 rounded-lg">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
                     {item.image ? (
                       <img src={item.image} alt={item.title} className="w-full h-full object-cover rounded-lg" />
                     ) : (
-                      <i className="fas fa-image text-gray-400"></i>
+                      <i className="fas fa-image text-gray-400 text-sm md:text-base"></i>
                     )}
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-gray-900">{item.title}</h3>
-                    <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
-                    <p className="text-sm font-medium text-green-600">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-gray-900 text-sm md:text-base line-clamp-1">{item.title}</h3>
+                    <p className="text-xs md:text-sm text-gray-600">Qty: {item.quantity}</p>
+                    <p className="text-xs md:text-sm font-medium text-green-600">
                       {formatCurrency(item.price)} × {item.quantity} = {formatCurrency(item.price * item.quantity)}
                     </p>
                   </div>
@@ -443,16 +456,16 @@ function Checkout() {
               ))}
             </div>
 
-            <div className="border-t pt-4 space-y-2">
-              <div className="flex justify-between text-sm">
+            <div className="border-t pt-3 md:pt-4 space-y-2">
+              <div className="flex justify-between text-sm md:text-base">
                 <span>Subtotal:</span>
                 <span>{formatCurrency(subtotal)}</span>
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm md:text-base">
                 <span>Tax (18%):</span>
                 <span>{formatCurrency(taxAmount)}</span>
               </div>
-              <div className="flex justify-between text-lg font-semibold border-t pt-2">
+              <div className="flex justify-between text-base md:text-lg font-semibold border-t pt-2">
                 <span>Total:</span>
                 <span className="text-green-600">{formatCurrency(total)}</span>
               </div>

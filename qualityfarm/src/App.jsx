@@ -26,7 +26,7 @@ function App() {
       </div>
       <div
         id="main-content"
-        className="pt-28"
+        className="pt-16 md:pt-24 lg:pt-37.5"
       >
         <HeroSection />
         <div>
