@@ -26,11 +26,6 @@ const Footer = () => {
         {/* Premium Call to Action */}
         <div className="py-8 md:py-16 text-center border-b border-green-800/50">
           <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-green-800/50 to-emerald-800/50 backdrop-blur-sm px-3 md:px-6 py-2 md:py-3 rounded-full border border-green-700/50 mb-4 md:mb-8">
-              <i className="fas fa-leaf text-green-400 text-sm md:text-lg"></i>
-              <span className="text-green-200 font-medium md:font-semibold tracking-wide text-xs md:text-base">Stay Connected</span>
-            </div>
-            
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6">
               Join <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">QualityFarm</span> Today
             </h2>
