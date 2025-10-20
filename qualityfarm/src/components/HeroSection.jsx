@@ -58,7 +58,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden bg-gray-900">
+    <section className="relative h-[60vh] min-h-[350px] overflow-hidden bg-gray-900">
       {/* Background Slides */}
       {heroSlides.map((slide, index) => (
         <div
@@ -89,58 +89,58 @@ const HeroSection = () => {
               className="animate-fadeInUp"
             >
               {/* Subtitle */}
-              <div className="mb-4" data-aos="fade-right" data-aos-duration="1000">
-                <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/20">
+              <div className="mb-3" data-aos="fade-right" data-aos-duration="1000">
+                <span className="inline-block px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">
                   {heroSlides[currentSlide].subtitle}
                 </span>
               </div>
 
               {/* Main Title */}
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+              <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 {heroSlides[currentSlide].title}
               </h1>
 
               {/* Description */}
-              <p className="text-xl text-white/90 mb-8 leading-relaxed max-w-2xl">
+              <p className="text-sm md:text-lg text-white/90 mb-6 leading-relaxed max-w-2xl">
                 {heroSlides[currentSlide].description}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to={heroSlides[currentSlide].buttonLink}
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-green-700 font-semibold rounded-full hover:bg-green-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white text-green-700 font-semibold rounded-full hover:bg-green-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm"
                 >
                   {heroSlides[currentSlide].buttonText}
                   <i className="fas fa-arrow-right ml-2"></i>
                 </Link>
                 <Link
                   to="/about"
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-green-700 transition-all duration-300"
+                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-green-700 transition-all duration-300 text-sm"
                 >
                   Learn More
                 </Link>
               </div>
 
               {/* Stats */}
-              <div className="mt-12 grid grid-cols-3 gap-8 max-w-md" data-aos="fade-up" data-aos-delay="800">
+              <div className="mt-8 grid grid-cols-3 gap-6 max-w-md" data-aos="fade-up" data-aos-delay="800">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">
+                  <div className="text-lg font-bold text-white mb-1">
                     500+
                   </div>
-                  <div className="text-sm text-white/80">Products</div>
+                  <div className="text-xs text-white/80">Products</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">
+                  <div className="text-lg font-bold text-white mb-1">
                     50+
                   </div>
-                  <div className="text-sm text-white/80">Local Farmers</div>
+                  <div className="text-xs text-white/80">Local Farmers</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-white mb-1">
+                  <div className="text-lg font-bold text-white mb-1">
                     1000+
                   </div>
-                  <div className="text-sm text-white/80">Happy Customers</div>
+                  <div className="text-xs text-white/80">Happy Customers</div>
                 </div>
               </div>
             </div>

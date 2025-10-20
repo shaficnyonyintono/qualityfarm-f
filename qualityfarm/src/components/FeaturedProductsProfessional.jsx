@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { toast } from "react-toastify";
 
-// Helper: check if user is logged in
+// Helper function to check if user is logged in
 const isLoggedIn = () => !!localStorage.getItem('token')
 
 // Professional star rating component
@@ -50,7 +50,7 @@ const StarRating = ({ rating, onRate, editable = false, size = 'sm' }) => {
 const ProfessionalFeaturedProducts = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const [ratingSubmitting, setRatingSubmitting] = useState({})
+  const [_ratingSubmitting, setRatingSubmitting] = useState({})
   const [currentSlide, setCurrentSlide] = useState(0)
   const navigate = useNavigate()
   const location = useLocation()
@@ -137,7 +137,7 @@ const ProfessionalFeaturedProducts = () => {
       } else {
         toast.error('Failed to submit rating')
       }
-    } catch (error) {
+    } catch {
       toast.error('Network error while submitting rating')
     } finally {
       setRatingSubmitting(prev => ({ ...prev, [productId]: false }))
@@ -154,7 +154,7 @@ const ProfessionalFeaturedProducts = () => {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="py-8 bg-gradient-to-br from-green-50 via-emerald-25 to-green-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
@@ -166,16 +166,12 @@ const ProfessionalFeaturedProducts = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <section className="py-8 bg-gradient-to-br from-green-50 via-emerald-25 to-green-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Professional Header */}
-        <div className="text-center mb-16" data-aos="fade-up">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-blue-100 px-6 py-3 rounded-full border border-green-200 mb-6">
-            <i className="fas fa-star text-yellow-500"></i>
-            <span className="font-semibold text-gray-700">Premium Selection</span>
-          </div>
+        <div className="text-center mb-8" data-aos="fade-up">
           <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight" data-aos="fade-up" data-aos-delay="200">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">Products</span>
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Products</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
             Discover our handpicked collection of premium agricultural products, 
@@ -276,7 +272,7 @@ const ProfessionalFeaturedProducts = () => {
                           {/* Category */}
                           {product.category && (
                             <div className="mb-3">
-                              <span className="inline-block bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold border border-blue-200">
+                              <span className="inline-block bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold border border-green-200">
                                 {product.category.name || product.category}
                               </span>
                             </div>

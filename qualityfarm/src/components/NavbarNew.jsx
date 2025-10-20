@@ -112,54 +112,54 @@ const Navbar = () => {
         </div>
 
         {/* Premium main navbar */}
-        <nav className="flex items-center justify-between py-5 min-w-0">
+        <nav className="flex items-center justify-between py-2 min-w-0">
           {/* Enhanced Logo */}
-          <Link to="/" className="flex items-center gap-4 group flex-1 min-w-0">
+          <Link to="/" className="flex items-center gap-3 group flex-1 min-w-0">
             <div className="relative">
-              <div className="h-12 w-12 sm:h-14 sm:w-14 bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-green-500/25 transition-all duration-500 group-hover:scale-105">
-                <i className="fas fa-seedling text-white text-lg sm:text-2xl"></i>
+              <div className="h-8 w-8 sm:h-10 sm:w-10 bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-2xl flex items-center justify-center shadow-2xl group-hover:shadow-green-500/25 transition-all duration-500 group-hover:scale-105">
+                <i className="fas fa-seedling text-white text-sm sm:text-lg"></i>
               </div>
-              <div className="absolute -top-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
+              <div className="absolute -top-1 -right-1 h-2 w-2 sm:h-3 sm:w-3 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
             </div>
             <div className="min-w-0">
-              <h1 className="text-xl sm:text-3xl font-black bg-gradient-to-r from-green-600 via-green-700 to-green-800 bg-clip-text text-transparent tracking-tight truncate">
+              <h1 className="text-lg sm:text-2xl font-black bg-gradient-to-r from-green-600 via-green-700 to-green-800 bg-clip-text text-transparent tracking-tight truncate">
                 QualityFarm
               </h1>
-              <p className="text-xs sm:text-sm text-gray-600 font-semibold tracking-wide hidden xs:block">Premium Agricultural Excellence</p>
+              <p className="text-xs text-gray-600 font-semibold tracking-wide hidden xs:block">Premium Agricultural Excellence</p>
             </div>
           </Link>
 
           {/* Enhanced Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 bg-gray-50/50 backdrop-blur-sm rounded-2xl px-2 py-2 border border-gray-200/50">
+          <div className="hidden md:flex items-center gap-1 bg-gray-50/50 backdrop-blur-sm rounded-2xl px-2 py-1 border border-gray-200/50">
             <Link 
               to="/" 
-              className="px-6 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 font-semibold transition-all duration-300 rounded-xl relative group"
+              className="px-4 py-1.5 text-sm text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 font-semibold transition-all duration-300 rounded-xl relative group"
             >
-              <i className="fas fa-home mr-2"></i>
+              <i className="fas fa-home mr-1.5 text-xs"></i>
               Home
               <span className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-green-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
             <Link 
               to="/products" 
-              className="px-6 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 font-semibold transition-all duration-300 rounded-xl relative group"
+              className="px-4 py-1.5 text-sm text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 font-semibold transition-all duration-300 rounded-xl relative group"
             >
-              <i className="fas fa-shopping-bag mr-2"></i>
+              <i className="fas fa-shopping-bag mr-1.5 text-xs"></i>
               Products
               <span className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
             <Link 
               to="/categories" 
-              className="px-6 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 font-semibold transition-all duration-300 rounded-xl relative group"
+              className="px-4 py-1.5 text-sm text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 font-semibold transition-all duration-300 rounded-xl relative group"
             >
-              <i className="fas fa-th-large mr-2"></i>
+              <i className="fas fa-th-large mr-1.5 text-xs"></i>
               Categories
               <span className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-green-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
             <Link 
               to="/featured" 
-              className="px-6 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 font-semibold transition-all duration-300 rounded-xl relative group"
+              className="px-4 py-1.5 text-sm text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 font-semibold transition-all duration-300 rounded-xl relative group"
             >
-              <i className="fas fa-star mr-2"></i>
+              <i className="fas fa-star mr-1.5 text-xs"></i>
               Featured
               <span className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
@@ -178,11 +178,11 @@ const Navbar = () => {
                   placeholder="Search premium agricultural products..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  className="flex-1 pl-14 pr-4 py-4 rounded-l-2xl bg-transparent outline-none font-medium placeholder-gray-500"
+                  className="flex-1 pl-14 pr-4 py-2.5 rounded-l-2xl bg-transparent outline-none font-medium placeholder-gray-500 text-sm"
                 />
                 <button
                   type="submit"
-                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-4 rounded-r-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2"
+                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2.5 rounded-r-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2 text-sm"
                 >
                   <i className="fas fa-search"></i>
                   <span className="hidden md:inline">Search</span>
@@ -220,19 +220,19 @@ const Navbar = () => {
             {/* Premium Profile - Desktop Only */}
             <div className="hidden md:block relative" ref={profileRef}>
               <button
-                className="flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 transition-all duration-300 border border-gray-200/50 hover:border-green-300/50 hover:shadow-lg"
+                className="flex items-center gap-2 p-2 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 transition-all duration-300 border border-gray-200/50 hover:border-green-300/50 hover:shadow-lg"
                 onClick={() => setProfileOpen(!profileOpen)}
               >
                 <div className="relative">
-                  <div className="h-12 w-12 bg-gradient-to-br from-green-500 via-green-600 to-green-700 rounded-2xl flex items-center justify-center text-white shadow-xl hover:shadow-green-500/25 transition-all duration-300">
-                    <i className="fas fa-user text-lg"></i>
+                  <div className="h-8 w-8 bg-gradient-to-br from-green-500 via-green-600 to-green-700 rounded-2xl flex items-center justify-center text-white shadow-xl hover:shadow-green-500/25 transition-all duration-300">
+                    <i className="fas fa-user text-sm"></i>
                   </div>
                   {token && (
-                    <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>
+                    <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full border-2 border-white"></div>
                   )}
                 </div>
                 <div className="hidden lg:block text-left">
-                  <div className="text-sm font-bold text-gray-800">
+                  <div className="text-xs font-bold text-gray-800">
                     {token && username ? username : 'Welcome'}
                   </div>
                   <div className="text-xs text-gray-500 font-medium">

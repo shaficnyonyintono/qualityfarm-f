@@ -78,10 +78,6 @@ function Categories() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Professional Header */}
         <div className="text-center mb-16" data-aos="fade-up">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-emerald-100 px-6 py-3 rounded-full border border-green-200 mb-6">
-            <i className="fas fa-th-large text-green-600"></i>
-            <span className="font-semibold text-gray-700">Browse Collection</span>
-          </div>
           <h2 className="text-5xl font-black text-gray-900 mb-6 tracking-tight" data-aos="fade-up" data-aos-delay="200">
             Product <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Categories</span>
           </h2>

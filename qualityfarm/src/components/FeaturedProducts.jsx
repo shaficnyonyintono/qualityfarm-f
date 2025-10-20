@@ -185,7 +185,7 @@ const FeaturedProducts = () => {
       } else {
         toast.success('Thank you for rating!');
       }
-    } catch (e) {
+    } catch {
       toast.error('Failed to submit rating.');
     } finally {
       setRatingSubmitting(prev => ({ ...prev, [productId]: false }))
@@ -218,10 +218,6 @@ const FeaturedProducts = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Professional Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-green-200 px-6 py-2 rounded-full mb-4">
-            <i className="fas fa-star text-green-600"></i>
-            <span className="text-green-700 font-semibold text-sm uppercase tracking-wide">Premium Selection</span>
-          </div>
           <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4">
             Featured Products
           </h2>
