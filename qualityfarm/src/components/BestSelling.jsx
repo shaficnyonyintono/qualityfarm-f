@@ -43,15 +43,15 @@ const BestSelling = () => {
 
   if (loading) {
     return (
-      <section className="max-w-7xl mx-auto px-4 py-8 md:py-16 relative">
+      <section className="max-w-7xl mx-auto px-3 md:px-4 py-4 md:py-6 lg:py-8 relative">
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-emerald-50/30 rounded-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-emerald-50/30 rounded-2xl md:rounded-3xl"></div>
         
         <div className="relative z-10">
           <div className="text-center">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-emerald-100 px-6 py-3 rounded-full border border-green-200 mb-8">
-              <div className="w-6 h-6 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
-              <span className="text-green-700 font-semibold">Loading best sellers...</span>
+            <div className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-green-100 to-emerald-100 px-4 py-2 md:px-5 md:py-2.5 rounded-full border border-green-200 mb-4 md:mb-6">
+              <div className="w-4 h-4 md:w-5 md:h-5 border-2 md:border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-green-700 font-semibold text-xs md:text-sm">Loading best sellers...</span>
             </div>
           </div>
         </div>
@@ -60,31 +60,31 @@ const BestSelling = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-8 md:py-16 relative">
+    <section className="max-w-7xl mx-auto px-3 md:px-4 py-4 md:py-6 lg:py-8 relative">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-emerald-50/30 rounded-3xl"></div>
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-200/20 to-emerald-300/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-emerald-200/20 to-green-300/20 rounded-full blur-2xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-transparent to-emerald-50/30 rounded-2xl md:rounded-3xl"></div>
+      <div className="absolute top-0 right-0 w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-green-200/20 to-emerald-300/20 rounded-full blur-2xl md:blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-emerald-200/20 to-green-300/20 rounded-full blur-xl md:blur-2xl"></div>
       
       <div className="relative z-10">
         {/* Enhanced Header */}
-        <div className="text-center mb-8 md:mb-12" data-aos="fade-up">
+        <div className="text-center mb-4 md:mb-6 lg:mb-8" data-aos="fade-up">
           
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4" data-aos="fade-up" data-aos-delay="200">
+          <h2 className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-black mb-2 md:mb-3" data-aos="fade-up" data-aos-delay="200">
             Top <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Selling</span> Products
           </h2>
           
-          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4" data-aos="fade-up" data-aos-delay="400">
+          <p className="text-xs md:text-sm lg:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed px-2 md:px-4" data-aos="fade-up" data-aos-delay="400">
             Discover our most popular agricultural products, trusted and loved by farmers everywhere
           </p>
           
-          <div className="flex items-center justify-center mt-6 md:mt-8" data-aos="fade-up" data-aos-delay="600">
+          <div className="flex items-center justify-center mt-3 md:mt-4 lg:mt-6" data-aos="fade-up" data-aos-delay="600">
             <Link
               to="/products"
-              className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold md:font-bold px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl hover:shadow-xl md:hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group text-sm md:text-base"
+              className="inline-flex items-center gap-1.5 md:gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold px-4 py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 rounded-lg md:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group text-xs md:text-sm lg:text-base"
             >
               <span>View All Products</span>
-              <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
+              <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-200 text-xs md:text-sm"></i>
             </Link>
           </div>
         </div>
@@ -92,38 +92,39 @@ const BestSelling = () => {
         {/* Products Grid */}
         <div className="relative">
           {/* Scroll Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-4 md:w-6 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-4 md:w-6 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           
-          <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
+          <div className="flex gap-3 md:gap-4 lg:gap-5 overflow-x-auto pb-3 md:pb-4 scrollbar-hide" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
             {bestSellingProducts.map((product, idx) => {
               const alreadyInCart = isInCart(product.id);
               return (
                 <div
                   key={product.id || idx}
-                  className="relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 flex flex-col border border-gray-100 group min-w-[320px] max-w-[320px] hover:-translate-y-2"
+                  className="relative bg-white rounded-xl md:rounded-2xl lg:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-3 md:p-4 lg:p-5 flex flex-col border border-gray-100 group min-w-[240px] max-w-[240px] md:min-w-[280px] md:max-w-[280px] lg:min-w-[300px] lg:max-w-[300px] hover:-translate-y-1 md:hover:-translate-y-2"
                   data-aos="fade-up"
                   data-aos-delay={idx * 150}
                   data-aos-duration="600"
                 >
                   {/* Best Seller Badge */}
-                  <div className="absolute top-4 left-4">
-                    <div className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
-                      <i className="fas fa-crown"></i>
-                      <span>Best Seller</span>
+                  <div className="absolute top-2 left-2 md:top-3 md:left-3">
+                    <div className="flex items-center gap-1 md:gap-1.5 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-2 py-1 md:px-2.5 md:py-1 rounded-full text-xs font-bold shadow-lg">
+                      <i className="fas fa-crown text-xs"></i>
+                      <span className="hidden sm:inline">Best Seller</span>
+                      <span className="sm:hidden">Top</span>
                     </div>
                   </div>
 
                   {/* Ranking Badge */}
-                  <div className="absolute top-4 right-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-black text-sm shadow-lg">
+                  <div className="absolute top-2 right-2 md:top-3 md:right-3">
+                    <div className="w-7 h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-black text-xs md:text-sm shadow-lg">
                       #{idx + 1}
                     </div>
                   </div>
 
                   {/* Product Image */}
-                  <div className="relative mb-6 mt-4">
-                    <div className="w-full h-48 rounded-2xl overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-100 group-hover:border-green-300 transition-colors duration-300">
+                  <div className="relative mb-3 md:mb-4 mt-2 md:mt-3">
+                    <div className="w-full h-32 md:h-36 lg:h-40 rounded-xl md:rounded-2xl overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100 group-hover:border-green-300 transition-colors duration-300">
                       {product.images && product.images.length > 0 ? (
                         <img
                           src={product.images[0].image}
@@ -131,36 +132,36 @@ const BestSelling = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />                        ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <i className="fas fa-image text-4xl text-green-300"></i>
+                            <i className="fas fa-image text-2xl md:text-3xl text-green-300"></i>
                           </div>
                         )}
                     </div>
                     
                     {/* Sales Indicator */}
-                    <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+                    <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 md:px-2.5 md:py-1 rounded-full shadow-lg">
                       <div className="flex items-center gap-1 text-green-600">
                         <i className="fas fa-chart-line text-xs"></i>
-                        <span className="text-xs font-bold">Hot Sale</span>
+                        <span className="text-xs font-bold">Hot</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Product Info */}
                   <div className="flex-1 flex flex-col">
-                    <h3 className="text-xl font-black text-gray-900 mb-2 line-clamp-2 group-hover:text-green-600 transition-colors duration-200">
+                    <h3 className="text-sm md:text-base lg:text-lg font-black text-gray-900 mb-1.5 md:mb-2 line-clamp-2 group-hover:text-green-600 transition-colors duration-200">
                       {product.title || product.name}
                     </h3>
                     
                     {/* Rating Stars */}
-                    <div className="flex items-center gap-1 mb-3">
+                    <div className="flex items-center gap-0.5 md:gap-1 mb-2 md:mb-2.5">
                       {[...Array(5)].map((_, i) => (
-                        <i key={i} className="fas fa-star text-yellow-400 text-sm"></i>
+                        <i key={i} className="fas fa-star text-yellow-400 text-xs"></i>
                       ))}
-                      <span className="text-gray-500 text-sm ml-1">(4.8)</span>
+                      <span className="text-gray-500 text-xs ml-1">(4.8)</span>
                     </div>
                     
                     {/* Price */}
-                    <div className="mb-6">
+                    <div className="mb-3 md:mb-4">
                       {/* Calculate realistic discount: current price is already discounted */}
                       {(() => {
                         const currentPrice = product.price;
@@ -169,12 +170,12 @@ const BestSelling = () => {
                         
                         return (
                           <>
-                            <span className="text-2xl font-black text-green-600">
+                            <span className="text-base md:text-lg lg:text-xl font-black text-green-600">
                               UGX {currentPrice?.toLocaleString ? currentPrice.toLocaleString() : currentPrice}
                             </span>
-                            <div className="text-gray-500 text-sm">
+                            <div className="text-gray-500 text-xs">
                               <span className="line-through">UGX {originalPrice?.toLocaleString ? originalPrice.toLocaleString() : originalPrice}</span>
-                              <span className="text-green-600 font-semibold ml-2">Save {discountPercent}%</span>
+                              <span className="text-green-600 font-semibold ml-1 md:ml-2">Save {discountPercent}%</span>
                             </div>
                           </>
                         );
@@ -182,9 +183,9 @@ const BestSelling = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="mt-auto space-y-3">
+                    <div className="mt-auto space-y-2 md:space-y-2.5">
                       <button
-                        className={`w-full py-4 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl ${
+                        className={`w-full py-2 md:py-2.5 lg:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-sm transition-all duration-300 flex items-center justify-center gap-1.5 md:gap-2 shadow-lg hover:shadow-xl ${
                           alreadyInCart
                             ? "bg-gray-100 text-gray-500 cursor-not-allowed"
                             : "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white hover:scale-105 active:scale-95"
@@ -192,16 +193,18 @@ const BestSelling = () => {
                         onClick={() => handleAddToCart(product)}
                         disabled={alreadyInCart}
                       >
-                        <i className={`fas ${alreadyInCart ? 'fa-check' : 'fa-shopping-cart'}`}></i>
-                        <span>{alreadyInCart ? "Added to Cart" : "Add to Cart"}</span>
+                        <i className={`fas ${alreadyInCart ? 'fa-check' : 'fa-shopping-cart'} text-xs md:text-sm`}></i>
+                        <span className="hidden sm:inline">{alreadyInCart ? "Added to Cart" : "Add to Cart"}</span>
+                        <span className="sm:hidden">{alreadyInCart ? "Added" : "Add"}</span>
                       </button>
                       
                       <Link
                         to={`/product/${product.id}`}
-                        className="w-full py-3 rounded-xl border-2 border-green-200 hover:border-green-400 text-green-600 hover:text-green-700 font-semibold transition-all duration-200 flex items-center justify-center gap-2 hover:bg-green-50"
+                        className="w-full py-2 md:py-2.5 rounded-lg md:rounded-xl border border-green-200 hover:border-green-400 text-green-600 hover:text-green-700 font-semibold text-xs md:text-sm transition-all duration-200 flex items-center justify-center gap-1.5 md:gap-2 hover:bg-green-50"
                       >
-                        <i className="fas fa-eye"></i>
-                        <span>View Details</span>
+                        <i className="fas fa-eye text-xs md:text-sm"></i>
+                        <span className="hidden sm:inline">View Details</span>
+                        <span className="sm:hidden">Details</span>
                       </Link>
                     </div>
                   </div>
@@ -213,12 +216,12 @@ const BestSelling = () => {
 
         {/* Call to Action */}
         {bestSellingProducts.length === 0 && (
-          <div className="text-center py-16">
-            <div className="w-24 h-24 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-fire text-3xl text-green-600"></i>
+          <div className="text-center py-8 md:py-10 lg:py-12">
+            <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 lg:mb-6">
+              <i className="fas fa-fire text-xl md:text-2xl lg:text-3xl text-green-600"></i>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">No best sellers available yet</h3>
-            <p className="text-gray-600 text-lg">Check back soon for our top-performing products!</p>
+            <h3 className="text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 md:mb-3">No best sellers available yet</h3>
+            <p className="text-gray-600 text-xs md:text-sm lg:text-base">Check back soon for our top-performing products!</p>
           </div>
         )}
       </div>

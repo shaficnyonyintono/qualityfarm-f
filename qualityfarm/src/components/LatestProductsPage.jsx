@@ -42,11 +42,11 @@ const LatestProductsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen pt-24 px-4">
+      <div className="min-h-screen pt-16 md:pt-20 px-3 md:px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading latest products...</p>
+          <div className="text-center py-6 md:py-8">
+            <div className="animate-spin rounded-full h-8 w-8 md:h-10 md:w-10 border-b-2 border-green-600 mx-auto"></div>
+            <p className="mt-3 text-sm md:text-base text-gray-600">Loading latest products...</p>
           </div>
         </div>
       </div>
@@ -54,29 +54,29 @@ const LatestProductsPage = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 px-4">
+    <div className="min-h-screen pt-16 md:pt-20 px-3 md:px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
+        <div className="mb-4 md:mb-6">
           <button
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-semibold transition-colors duration-200 mb-4"
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-1.5 md:px-5 md:py-2 rounded-full text-sm md:text-base font-semibold transition-colors duration-200 mb-3 md:mb-4"
             onClick={() => navigate("/")}
           >
             ← Back to Home
           </button>
-          <h1 className="text-3xl font-bold text-green-700 mb-4">Latest Products</h1>
-          <p className="text-gray-600">Discover our newest arrivals and latest additions</p>
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-green-700 mb-2 md:mb-3">Latest Products</h1>
+          <p className="text-sm md:text-base text-gray-600">Discover our newest arrivals and latest additions</p>
         </div>
         
         {latestProducts.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <i className="fas fa-clock text-6xl text-gray-300 mb-4"></i>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">No new products available</h2>
-              <p className="text-gray-600">Check back later for our latest products.</p>
+          <div className="text-center py-8 md:py-10">
+            <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
+              <i className="fas fa-clock text-4xl md:text-5xl text-gray-300 mb-3 md:mb-4"></i>
+              <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">No new products available</h2>
+              <p className="text-sm md:text-base text-gray-600">Check back later for our latest products.</p>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 lg:gap-4">
             {latestProducts.map((product) => (
               <ProductCard
                 key={product.id}

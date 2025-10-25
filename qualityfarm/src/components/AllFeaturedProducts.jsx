@@ -99,46 +99,59 @@ function AllFeaturedProducts() {
     }
   };
 
-  if (loading) return <div className="mt-24 text-center py-12">Loading featured products...</div>;
+  if (loading) return (
+    <div className="min-h-screen pt-16 md:pt-20 px-3 md:px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center py-6 md:py-8">
+          <div className="animate-spin rounded-full h-8 w-8 md:h-10 md:w-10 border-b-2 border-green-600 mx-auto"></div>
+          <p className="mt-3 text-sm md:text-base text-gray-600">Loading featured products...</p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 mt-24">
-      <h2 className="text-2xl font-bold text-green-700 mb-6 text-center">All Featured Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <div key={product.id} className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100">
-            <img
-              src={product.image ? `https://qualityfarm-b-1.onrender.com${product.image}` : "/placeholder.jpg"}
-              alt={product.title}
-              className="h-36 w-36 object-cover rounded-full mb-4 border-4 border-green-500 shadow"
-            />
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">{product.title}</h3>
-            <span className="text-green-700 font-bold mb-2">UGX {product.price}</span>
-            <p className="text-gray-500 text-sm text-center mb-2">{product.description}</p>
-            <div className="flex items-center mb-2">
-              {isLoggedIn()
-                ? renderStars(
-                    product.average_rating || 0,
-                    (rating) => handleRate(product.id, rating),
-                    true
-                  )
-                : renderStars(product.average_rating || 0)
-              }
-              {isLoggedIn() && ratingSubmitting[product.id] && (
-                <span className="ml-2 text-xs text-gray-400">Submitting...</span>
-              )}
-              {!isLoggedIn() && (
-                <span className="ml-2 text-xs text-gray-400">Login to rate</span>
-              )}
+    <div className="min-h-screen pt-16 md:pt-20 px-3 md:px-4 pb-6 md:pb-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-green-700 mb-4 md:mb-6 text-center">All Featured Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 lg:gap-5">
+          {products.map((product) => (
+            <div key={product.id} className="bg-white rounded-xl md:rounded-2xl shadow-lg p-4 md:p-5 lg:p-6 flex flex-col items-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <img
+                src={product.image ? `https://qualityfarm-b-1.onrender.com${product.image}` : "/placeholder.jpg"}
+                alt={product.title}
+                className="h-24 w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 object-cover rounded-full mb-2 md:mb-3 border-2 md:border-4 border-green-500 shadow"
+              />
+              <h3 className="text-sm md:text-base lg:text-lg font-semibold text-gray-800 mb-1 text-center line-clamp-2">{product.title}</h3>
+              <span className="text-green-700 font-bold mb-1.5 md:mb-2 text-sm md:text-base">
+                UGX {new Intl.NumberFormat('en-UG').format(product.price)}
+              </span>
+              <p className="text-gray-500 text-xs md:text-sm text-center mb-2 line-clamp-2">{product.description}</p>
+              <div className="flex items-center mb-2 md:mb-3 text-xs md:text-sm">
+                {isLoggedIn()
+                  ? renderStars(
+                      product.average_rating || 0,
+                      (rating) => handleRate(product.id, rating),
+                      true
+                    )
+                  : renderStars(product.average_rating || 0)
+                }
+                {isLoggedIn() && ratingSubmitting[product.id] && (
+                  <span className="ml-1.5 text-xs text-gray-400">Submitting...</span>
+                )}
+                {!isLoggedIn() && (
+                  <span className="ml-1.5 text-xs text-gray-400">Login to rate</span>
+                )}
+              </div>
+              <Link
+                to={`/product/${encodeURIComponent(product.title)}`}
+                className="mt-auto bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-4 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-semibold shadow transition-all duration-200 text-center w-full"
+              >
+                View Details
+              </Link>
             </div>
-            <Link
-              to={`/product/${encodeURIComponent(product.title)}`}
-              className="mt-auto bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-5 py-2 rounded-full font-semibold shadow transition-all duration-200 text-center w-full"
-            >
-              View Details
-            </Link>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

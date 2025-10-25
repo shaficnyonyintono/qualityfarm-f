@@ -194,11 +194,11 @@ const FeaturedProducts = () => {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-3 md:px-4 py-8 md:py-12">
         <div className="flex items-center justify-center">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600 font-medium">Loading featured products...</p>
+            <div className="w-12 h-12 md:w-16 md:h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-3 md:mb-4"></div>
+            <p className="text-gray-600 font-medium text-sm md:text-base">Loading featured products...</p>
           </div>
         </div>
       </div>
@@ -214,37 +214,37 @@ const FeaturedProducts = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 via-white to-green-50/30 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-gradient-to-br from-gray-50 via-white to-green-50/30 py-8 md:py-12 lg:py-14">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
         {/* Professional Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4">
+        <div className="text-center mb-6 md:mb-8 lg:mb-10">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-black text-gray-900 mb-2 md:mb-3">
             Featured Products
           </h2>
-          <p className="text-xl text-gray-600 font-medium max-w-2xl mx-auto">
+          <p className="text-xs md:text-sm lg:text-base text-gray-600 font-medium max-w-2xl mx-auto px-2">
             Discover our handpicked premium agricultural products trusted by thousands of farmers
           </p>
         </div>
 
         {/* Back button for featured page */}
         {location.pathname.startsWith("/featured") && (
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <button
-              className="bg-white hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 flex items-center gap-2"
+              className="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 md:px-6 md:py-3 rounded-xl font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 flex items-center gap-2"
               onClick={() => navigate("/")}
             >
-              <i className="fas fa-arrow-left"></i>
+              <i className="fas fa-arrow-left text-sm md:text-base"></i>
               Back to Home
             </button>
           </div>
         )}
 
         {/* Professional Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6 lg:gap-8">
           {products.map((product, idx) => (
             <div
               key={product.id || idx}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2"
+              className="group bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2"
             >
               {/* Product Image */}
               <div className="relative overflow-hidden">
@@ -259,50 +259,50 @@ const FeaturedProducts = () => {
                           : "https://qualityfarm-b-1.onrender.com" + product.images[0].image
                       }
                       alt={product.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-32 md:h-40 lg:h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                       onError={(e) => {
                         e.target.src = `https://via.placeholder.com/300x200/10B981/ffffff?text=${encodeURIComponent(product.title)}`;
                       }}
                     />
                   ) : (
-                    <div className="w-full h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                    <div className="w-full h-32 md:h-40 lg:h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
                       <div className="text-center">
-                        <i className="fas fa-seedling text-4xl text-green-600 mb-2"></i>
-                        <p className="text-green-700 font-semibold">{product.title}</p>
+                        <i className="fas fa-seedling text-2xl md:text-3xl lg:text-4xl text-green-600 mb-1 md:mb-2"></i>
+                        <p className="text-green-700 font-semibold text-xs md:text-sm">{product.title}</p>
                       </div>
                     </div>
                   )}
                 </div>
                 
                 {/* Featured Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                <div className="absolute top-2 md:top-4 left-2 md:left-4">
+                  <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] md:text-xs font-bold px-2 py-0.5 md:px-3 md:py-1 rounded-full shadow-lg">
                     ⭐ FEATURED
                   </span>
                 </div>
 
                 {/* Category Badge */}
-                <div className="absolute top-4 right-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                <div className="absolute top-2 md:top-4 right-2 md:right-4">
+                  <span className="bg-white/90 backdrop-blur-sm text-gray-700 text-[10px] md:text-xs font-semibold px-2 py-0.5 md:px-3 md:py-1 rounded-full shadow-md">
                     {product.category}
                   </span>
                 </div>
               </div>
 
               {/* Product Details */}
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-green-700 transition-colors duration-200">
+              <div className="p-3 md:p-5 lg:p-6">
+                <h3 className="text-sm md:text-base lg:text-lg font-bold text-gray-900 mb-1 md:mb-2 line-clamp-2 group-hover:text-green-700 transition-colors duration-200">
                   {product.title}
                 </h3>
                 
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                <p className="text-gray-600 text-xs md:text-sm mb-2 md:mb-4 line-clamp-2 hidden md:block">
                   {product.description}
                 </p>
 
                 {/* Rating */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <div className="flex">
+                <div className="flex items-center justify-between mb-2 md:mb-4">
+                  <div className="flex items-center gap-1 md:gap-2">
+                    <div className="flex text-xs md:text-base">
                       {isLoggedIn()
                         ? renderStars(
                             product.average_rating || 0,
@@ -312,34 +312,35 @@ const FeaturedProducts = () => {
                         : renderStars(product.average_rating || 0)
                       }
                     </div>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-[10px] md:text-sm text-gray-500">
                       ({(product.average_rating || 0).toFixed(1)})
                     </span>
                   </div>
                   {isLoggedIn() && ratingSubmitting[product.id] && (
                     <div className="flex items-center gap-1">
-                      <div className="w-3 h-3 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
-                      <span className="text-xs text-gray-400">Rating...</span>
+                      <div className="w-2 h-2 md:w-3 md:h-3 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+                      <span className="text-[10px] md:text-xs text-gray-400 hidden md:inline">Rating...</span>
                     </div>
                   )}
                   {!isLoggedIn() && (
-                    <span className="text-xs text-gray-400">Login to rate</span>
+                    <span className="text-[10px] md:text-xs text-gray-400 hidden md:inline">Login to rate</span>
                   )}
                 </div>
 
                 {/* Price and Actions */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-0">
                   <div>
-                    <span className="text-2xl font-black text-green-600">
+                    <span className="text-base md:text-xl lg:text-2xl font-black text-green-600">
                       {formatCurrency(product.price)}
                     </span>
                   </div>
                   <button
-                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2 hover:scale-105"
+                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-3 py-1.5 md:px-5 lg:px-6 md:py-2 lg:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm lg:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-1 md:gap-2 hover:scale-105 w-full md:w-auto justify-center"
                     onClick={() => navigate(`/product/${encodeURIComponent(product.title)}`)}
                   >
-                    <i className="fas fa-eye"></i>
-                    View Details
+                    <i className="fas fa-eye text-xs md:text-sm"></i>
+                    <span className="hidden md:inline">View Details</span>
+                    <span className="md:hidden">View</span>
                   </button>
                 </div>
               </div>
@@ -348,12 +349,12 @@ const FeaturedProducts = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 md:mt-10 lg:mt-12">
           <button
             onClick={() => navigate("/featured")}
-            className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl text-sm md:text-base lg:text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
-            <i className="fas fa-arrow-right mr-2"></i>
+            <i className="fas fa-arrow-right mr-2 text-sm md:text-base"></i>
             View All Featured Products
           </button>
         </div>

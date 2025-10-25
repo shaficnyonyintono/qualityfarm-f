@@ -154,11 +154,11 @@ const ProfessionalFeaturedProducts = () => {
 
   if (loading) {
     return (
-      <section className="py-8 bg-gradient-to-br from-green-50 via-emerald-25 to-green-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-5 md:py-6 bg-gradient-to-br from-green-50 via-emerald-25 to-green-100">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600 font-medium">Loading featured products...</p>
+            <div className="w-10 h-10 md:w-14 md:h-14 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-2.5 md:mb-3"></div>
+            <p className="text-gray-600 font-medium text-xs md:text-sm">Loading featured products...</p>
           </div>
         </div>
       </section>
@@ -166,26 +166,26 @@ const ProfessionalFeaturedProducts = () => {
   }
 
   return (
-    <section className="py-8 bg-gradient-to-br from-green-50 via-emerald-25 to-green-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-5 md:py-6 lg:py-8 bg-gradient-to-br from-green-50 via-emerald-25 to-green-100">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
         {/* Professional Header */}
-        <div className="text-center mb-8" data-aos="fade-up">
-          <h2 className="text-2xl md:text-5xl font-black text-gray-900 mb-4 md:mb-6 tracking-tight" data-aos="fade-up" data-aos-delay="200">
+        <div className="text-center mb-4 md:mb-6" data-aos="fade-up">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-black text-gray-900 mb-1.5 md:mb-3 tracking-tight" data-aos="fade-up" data-aos-delay="200">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Products</span>
           </h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4" data-aos="fade-up" data-aos-delay="400">
+          <p className="text-xs md:text-sm lg:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 md:px-4" data-aos="fade-up" data-aos-delay="400">
             Discover our handpicked collection of premium agricultural products, 
             carefully selected for their exceptional quality and proven performance.
           </p>
           
           {/* Back button for featured page */}
           {location.pathname.startsWith("/featured") && (
-            <div className="mt-8" data-aos="fade-up" data-aos-delay="600">
+            <div className="mt-4 md:mt-6" data-aos="fade-up" data-aos-delay="600">
               <button
                 onClick={() => navigate("/")}
-                className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 px-4 md:px-8 py-2 md:py-4 rounded-xl md:rounded-2xl font-medium md:font-semibold shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl transition-all duration-300 text-sm md:text-base"
+                className="inline-flex items-center gap-1.5 md:gap-2 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 px-3 md:px-5 py-1.5 md:py-2.5 rounded-lg md:rounded-xl font-medium md:font-semibold shadow-md hover:shadow-lg transition-all duration-300 text-xs md:text-sm"
               >
-                <i className="fas fa-arrow-left"></i>
+                <i className="fas fa-arrow-left text-xs"></i>
                 Back to Home
               </button>
             </div>
@@ -199,34 +199,34 @@ const ProfessionalFeaturedProducts = () => {
             <>
               <button
                 onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-green-600 w-12 h-12 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center group"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 md:-translate-x-4 z-10 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-green-600 w-7 md:w-10 h-7 md:h-10 rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group"
                 disabled={currentSlide === 0}
               >
-                <i className="fas fa-chevron-left group-hover:scale-110 transition-transform"></i>
+                <i className="fas fa-chevron-left text-xs md:text-sm group-hover:scale-110 transition-transform"></i>
               </button>
               <button
                 onClick={() => setCurrentSlide(Math.min(Math.ceil(products.length / 4) - 1, currentSlide + 1))}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-green-600 w-12 h-12 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center group"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 md:translate-x-4 z-10 bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-green-600 w-7 md:w-10 h-7 md:h-10 rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group"
                 disabled={currentSlide === Math.ceil(products.length / 4) - 1}
               >
-                <i className="fas fa-chevron-right group-hover:scale-110 transition-transform"></i>
+                <i className="fas fa-chevron-right text-xs md:text-sm group-hover:scale-110 transition-transform"></i>
               </button>
             </>
           )}
 
           {/* Products container */}
-          <div className="overflow-hidden rounded-3xl">
+          <div className="overflow-hidden rounded-2xl md:rounded-3xl">
             <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {Array.from({ length: Math.ceil(products.length / 4) }).map((_, slideIndex) => (
                 <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                  <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-4 lg:gap-6">
                     {products.slice(slideIndex * 4, (slideIndex + 1) * 4).map((product, idx) => (
                       <div
                         key={product.id || idx}
-                        className="group bg-white rounded-2xl md:rounded-3xl shadow-lg md:shadow-xl hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-2"
+                        className="group bg-white rounded-lg md:rounded-2xl shadow-md hover:shadow-lg transition-all duration-500 overflow-hidden border border-gray-100 hover:border-green-200 hover:-translate-y-1"
                         data-aos="fade-up"
                         data-aos-delay={idx * 100}
                         data-aos-duration="600"
@@ -245,70 +245,70 @@ const ProfessionalFeaturedProducts = () => {
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center">
-                              <i className="fas fa-image text-2xl md:text-4xl text-gray-400"></i>
+                              <i className="fas fa-image text-xl md:text-3xl text-gray-400"></i>
                             </div>
                           )}
                           
                           {/* Overlay badges */}
-                          <div className="absolute top-2 md:top-4 left-2 md:left-4">
-                            <span className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 md:px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                          <div className="absolute top-1.5 md:top-3 left-1.5 md:left-3">
+                            <span className="bg-gradient-to-r from-green-500 to-green-600 text-white px-1.5 md:px-2.5 py-0.5 rounded-full text-[9px] md:text-[10px] font-bold shadow-md">
                               Featured
                             </span>
                           </div>
                           
                           {/* Quick action buttons */}
-                          <div className="absolute top-2 md:top-4 right-2 md:right-4 flex flex-col gap-1 md:gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-red-500 w-8 md:w-10 h-8 md:h-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center">
-                              <i className="fas fa-heart text-xs md:text-sm"></i>
+                          <div className="absolute top-1.5 md:top-3 right-1.5 md:right-3 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-red-500 w-6 md:w-8 h-6 md:h-8 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center">
+                              <i className="fas fa-heart text-[9px] md:text-xs"></i>
                             </button>
-                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-blue-500 w-8 md:w-10 h-8 md:h-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center">
-                              <i className="fas fa-eye text-xs md:text-sm"></i>
+                            <button className="bg-white/90 backdrop-blur-sm hover:bg-white text-gray-700 hover:text-blue-500 w-6 md:w-8 h-6 md:h-8 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center">
+                              <i className="fas fa-eye text-[9px] md:text-xs"></i>
                             </button>
                           </div>
                         </div>
 
                         {/* Product Info */}
-                        <div className="p-3 md:p-6">
+                        <div className="p-2 md:p-4 lg:p-5">
                           {/* Category */}
                           {product.category && (
-                            <div className="mb-2 md:mb-3">
-                              <span className="inline-block bg-green-50 text-green-700 px-2 md:px-3 py-1 rounded-full text-xs font-semibold border border-green-200">
+                            <div className="mb-1 md:mb-2">
+                              <span className="inline-block bg-green-50 text-green-700 px-1.5 md:px-2.5 py-0.5 rounded-full text-[9px] md:text-[10px] font-semibold border border-green-200">
                                 {product.category.name || product.category}
                               </span>
                             </div>
                           )}
 
                           {/* Title */}
-                          <h3 className="font-semibold md:font-bold text-gray-900 text-sm md:text-lg mb-2 md:mb-3 line-clamp-2 group-hover:text-green-600 transition-colors duration-200">
+                          <h3 className="font-semibold md:font-bold text-gray-900 text-xs md:text-sm lg:text-base mb-1 md:mb-2 line-clamp-2 group-hover:text-green-600 transition-colors duration-200">
                             {product.title}
                           </h3>
 
                           {/* Description */}
-                          <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">
+                          <p className="text-gray-600 text-[10px] md:text-xs mb-1.5 md:mb-3 line-clamp-2 hidden md:block">
                             {product.description || 'Premium quality agricultural product for optimal results.'}
                           </p>
 
                           {/* Rating */}
-                          <div className="flex items-center justify-between mb-3 md:mb-4">
+                          <div className="flex items-center justify-between mb-1.5 md:mb-3">
                             <StarRating 
                               rating={product.average_rating || 0} 
                               onRate={(rating) => handleRate(product.id, rating)}
                               editable={isLoggedIn()}
                               size="sm"
                             />
-                            <span className="text-xs text-gray-500">
-                              ({product.rating_count || 0} reviews)
+                            <span className="text-[9px] md:text-[10px] text-gray-500">
+                              ({product.rating_count || 0})
                             </span>
                           </div>
 
                           {/* Price */}
-                          <div className="flex items-center justify-between mb-4 md:mb-6">
+                          <div className="flex items-center justify-between mb-1.5 md:mb-4">
                             <div>
-                              <span className="text-lg md:text-2xl font-bold md:font-black text-gray-900">
+                              <span className="text-sm md:text-base lg:text-lg font-bold md:font-black text-gray-900">
                                 {formatCurrency(product.price)}
                               </span>
                               {product.original_price && product.original_price > product.price && (
-                                <span className="ml-1 md:ml-2 text-xs md:text-sm text-gray-500 line-through">
+                                <span className="ml-1 text-[9px] md:text-xs text-gray-500 line-through">
                                   {formatCurrency(product.original_price)}
                                 </span>
                               )}
@@ -316,20 +316,20 @@ const ProfessionalFeaturedProducts = () => {
                           </div>
 
                           {/* Actions */}
-                          <div className="flex gap-2 md:gap-3">
+                          <div className="flex gap-1 md:gap-2">
                             <button
                               onClick={() => handleAddToCart(product)}
-                              className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold md:font-bold py-2 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl transition-all duration-300 shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-1 md:gap-2 text-xs md:text-sm"
+                              className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold md:font-bold py-1 md:py-2 px-1.5 md:px-3 rounded-md md:rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105 active:scale-95 flex items-center justify-center gap-1 text-[10px] md:text-xs"
                             >
-                              <i className="fas fa-shopping-cart text-xs md:text-sm"></i>
+                              <i className="fas fa-shopping-cart text-[9px] md:text-xs"></i>
                               <span className="hidden sm:inline">Add to Cart</span>
                               <span className="sm:hidden">Add</span>
                             </button>
                             <Link
                               to={`/product/${encodeURIComponent(product.title)}`}
-                              className="bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-900 font-medium md:font-semibold py-2 md:py-3 px-2 md:px-4 rounded-lg md:rounded-xl transition-all duration-200 flex items-center justify-center"
+                              className="bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-900 font-medium md:font-semibold py-1 md:py-2 px-1.5 md:px-3 rounded-md md:rounded-lg transition-all duration-200 flex items-center justify-center"
                             >
-                              <i className="fas fa-info-circle text-xs md:text-sm"></i>
+                              <i className="fas fa-info-circle text-[9px] md:text-xs"></i>
                             </Link>
                           </div>
                         </div>
@@ -343,14 +343,14 @@ const ProfessionalFeaturedProducts = () => {
 
           {/* Slide indicators */}
           {products.length > 4 && (
-            <div className="flex justify-center mt-8 gap-2">
+            <div className="flex justify-center mt-4 md:mt-6 gap-1 md:gap-1.5">
               {Array.from({ length: Math.ceil(products.length / 4) }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-1.5 h-1.5 md:w-2.5 md:h-2.5 rounded-full transition-all duration-300 ${
                     currentSlide === index
-                      ? 'bg-gradient-to-r from-green-500 to-green-600 w-8'
+                      ? 'bg-gradient-to-r from-green-500 to-green-600 w-5 md:w-7'
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                 />
@@ -360,13 +360,13 @@ const ProfessionalFeaturedProducts = () => {
         </div>
 
         {/* Call-to-action */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-6 md:mt-10">
           <Link
             to="/featured"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-1.5 md:gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-xs md:text-sm"
           >
             <span>Explore All Featured Products</span>
-            <i className="fas fa-arrow-right"></i>
+            <i className="fas fa-arrow-right text-xs"></i>
           </Link>
         </div>
       </div>
