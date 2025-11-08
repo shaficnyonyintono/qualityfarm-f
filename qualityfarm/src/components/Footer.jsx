@@ -1,19 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email.trim()) {
-      toast.success("Thank you for subscribing to QualityFarm!");
-      setEmail("");
-    } else {
-      toast.error("Please enter a valid email address");
-    }
-  };
 
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-green-900 to-emerald-950 text-white overflow-hidden">
@@ -23,41 +11,6 @@ const Footer = () => {
       <div className="absolute bottom-0 right-1/4 w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-emerald-500/10 rounded-full blur-xl md:blur-2xl"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-3 md:px-4">
-        {/* Premium Call to Action */}
-        <div className="py-4 md:py-6 lg:py-8 text-center border-b border-green-800/50">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-black mb-2 md:mb-3">
-              Join <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">QualityFarm</span> Today
-            </h2>
-            
-            <p className="text-xs md:text-sm lg:text-base text-gray-300 mb-3 md:mb-4 lg:mb-5 max-w-2xl mx-auto leading-relaxed px-2">
-              Get exclusive access to the freshest produce, premium agricultural products, and special deals delivered straight to your door.
-            </p>
-            
-            <form onSubmit={handleSubscribe} className="flex flex-col gap-2 md:gap-3 justify-center items-center max-w-md mx-auto">
-              <div className="relative flex-1 w-full">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <i className="fas fa-envelope text-gray-500 text-xs md:text-sm"></i>
-                </div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  className="w-full pl-8 md:pl-10 pr-3 py-2 md:py-2.5 lg:py-3 rounded-lg md:rounded-xl bg-white/10 backdrop-blur-sm border-2 border-green-700/30 focus:border-green-500 focus:ring-2 md:focus:ring-4 focus:ring-green-500/20 outline-none text-white placeholder-gray-400 transition-all duration-300 text-xs md:text-sm"
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-5 py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 rounded-lg md:rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap w-full sm:w-auto text-xs md:text-sm"
-              >
-                <i className="fas fa-paper-plane mr-1.5 md:mr-2 text-xs md:text-sm"></i>
-                Subscribe Now
-              </button>
-            </form>
-          </div>
-        </div>
-        
         {/* Main Footer Content */}
         <div className="py-4 md:py-6 lg:py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">

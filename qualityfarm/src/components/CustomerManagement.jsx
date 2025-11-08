@@ -115,7 +115,7 @@ const CustomerManagement = () => {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
+      
       <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
@@ -136,7 +136,7 @@ const CustomerManagement = () => {
         </div>
       </div>
 
-      {/* Search and Filters */}
+      
       <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 p-6">
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1">
@@ -156,7 +156,7 @@ const CustomerManagement = () => {
         </div>
       </div>
 
-      {/* Customers Table */}
+      
       <div className="bg-white rounded-2xl shadow-xl border border-gray-200/50 overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-2xl font-black text-gray-900 flex items-center gap-3">
@@ -248,7 +248,7 @@ const CustomerManagement = () => {
         )}
       </div>
 
-      {/* Customer Details Modal */}
+      
       {showCustomerModal && selectedCustomer && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -259,7 +259,7 @@ const CustomerManagement = () => {
               </h3>
             </div>
             <div className="p-6 space-y-6">
-              {/* Customer Info */}
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 rounded-xl p-4">
                   <h4 className="font-bold text-gray-900 mb-3">Contact Information</h4>
@@ -298,7 +298,7 @@ const CustomerManagement = () => {
                 </div>
               </div>
 
-              {/* Account Status */}
+              
               <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 border border-purple-200">
                 <div className="flex justify-between items-center">
                   <div>
